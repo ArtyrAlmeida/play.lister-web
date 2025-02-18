@@ -1,0 +1,53 @@
+$mui-color: rgba(255, 255, 255, 0.87);
+$mui-color-clear: rgba(188, 188, 188, 0.87);
+$base-green: #32A851;
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    width: 30rem;
+}
+
+.form-camp :global .MuiOutlinedInput-notchedOutline {
+    border-color: $mui-color;
+}
+
+.logo {
+    margin-bottom: 4rem;
+}
+
+.form-control:hover {
+    border-color: $mui-color-clear;
+}
+
+.form-camp :global .MuiFormHelperText-root {
+    color: $mui-color;
+}
+
+.navigate-control {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: .25rem;
+}
+
+.navigate-control:hover {
+    color: $base-green;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
