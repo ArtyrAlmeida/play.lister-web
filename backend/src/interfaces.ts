@@ -26,10 +26,16 @@ interface UserInterface {
     image: string,
 }
 
+interface LikeInterface {
+    _id?: string;
+    userId: string;
+    playlistId: string;
+}
+
 interface LoginInfo {
     email: string,
     password: string,
 }
 
 
-export { SongInterface, UserInterface, LoginInfo, PlaylistInterface };
+export { SongInterface, UserInterface, LoginInfo, PlaylistInterface, LikeInterface };

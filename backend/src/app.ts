@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { playlistRouter, songsRouter, userRouter } from './routes/router';
+import { likeRouter, playlistRouter, songsRouter, userRouter } from './routes/router';
 import{ connectMongo } from './database/database';
 import cors from 'cors';
 
@@ -14,7 +14,8 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/songs', songsRouter);
 app.use('/user', userRouter);
-app.use('/playlist', playlistRouter)
+app.use('/playlist', playlistRouter);
+app.use('/like', likeRouter);
 
 connectMongo();
 
