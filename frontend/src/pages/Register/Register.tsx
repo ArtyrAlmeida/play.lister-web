@@ -1,4 +1,4 @@
-import { ArrowCircleLeftOutlined } from "@mui/icons-material";
+import { ArrowCircleLeftOutlined, ArrowRight } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import registerSchema, { RegisterFormTypeSchema } from "./schemas/register.schema";
@@ -68,8 +68,8 @@ const Register: React.FC = () => {
                     </div>
                 </div>
                 <div className={styles['form-actions']}>
-                    <Link className={styles['navigate-control']} to="/login"><ArrowCircleLeftOutlined/>Voltar</Link>
-                    <button type="submit">Entrar</button>
+                    <Link className={styles['navigate-control']} to="/login"><ArrowCircleLeftOutlined />Voltar</Link>
+                    <button type="submit" className={styles['form-action-button']}>Realizar Cadastro<ArrowRight className={styles['arrow-icon']} fontSize="large"/></button>
                 </div>
             </form>
         </>

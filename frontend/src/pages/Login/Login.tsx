@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowCircleRightOutlined } from "@mui/icons-material";
+import { ArrowCircleRightOutlined, ArrowRight } from "@mui/icons-material";
 import { TextField } from "@mui/material";
 import { useFormik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod'
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className={styles['form-actions']}>
                     <Link className={styles['navigate-control']} to="/register">Não tem uma conta? Registre-se <ArrowCircleRightOutlined /></Link>
-                    <button type="submit">Entrar</button>
+                    <button type="submit" className={styles['form-action-button']} >Entrar<ArrowRight className={styles['arrow-icon']} fontSize="large"/></button>
                 </div>
             </form>
         </>
