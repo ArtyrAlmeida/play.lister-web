@@ -1,0 +1,53 @@
+.about-container {
+    width: 40rem;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+.about-tittle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-item-image-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem
+}
+
+.info-item-description {
+    max-width: 20rem;
+}
+
+.impact-text {
+    width: 23rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: start;
+}
+
+.info-item-image {
+    background-color: white;
+    border-radius: .5rem;
+    width: 400px;
+    height: 400px;
+}

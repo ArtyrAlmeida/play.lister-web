@@ -12,6 +12,11 @@ $base-green: #32A851;
     border-color: $mui-color;
 }
 
+.form-camp :global .MuiOutlinedInput-input {
+    background-color: white;
+    border-radius: 5px;
+}
+
 .logo {
     margin-bottom: 4rem;
 }
@@ -49,4 +54,22 @@ $base-green: #32A851;
     display: flex;
     flex-direction: column;
     justify-content: start;
+}
+
+.form-action-button {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    padding: 0;
+    padding-left: 1.5rem;
+    border-radius: 2rem;
+    color: black;
+}
+
+.form-actions :global .MuiSvgIcon-fontSizeLarge {
+    text-align: center;
+    color: $base-green;
+    font-size: 2.5rem;
 }
