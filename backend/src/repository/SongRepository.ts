@@ -20,6 +20,12 @@ export default class SongRepository {
         return result;
     }
 
+    async findByArray(ids: string[]) {
+        const result = await Song.find({ _id: { $in: ids } });
+
+        return result;
+    }
+
     async updateOne(id: string, payload: object) {
         const result = await Song.updateOne({ _id: id }, { $set: payload });
 

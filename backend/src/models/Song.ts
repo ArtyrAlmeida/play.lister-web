@@ -8,10 +8,6 @@ const songSchema = new Schema<SongInterface>({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     length: {
         type: String,
         required: true

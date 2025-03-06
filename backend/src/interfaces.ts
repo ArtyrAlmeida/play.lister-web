@@ -2,7 +2,6 @@ interface SongInterface {
     _id?: string,
     name: string,
     length: string,
-    description: string,
     author: string,
     image: string,
 }
@@ -10,7 +9,6 @@ interface SongInterface {
 interface PlaylistInterface {
     _id?: string,
     name: string,
-    description: string,
     createdAt?: Date | string,
     author: string,
     songs: string[],
