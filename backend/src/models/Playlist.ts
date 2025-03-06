@@ -9,10 +9,6 @@ const plalistSchema = new Schema<PlaylistInterface>({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     author: {
         type: String,
         required: true
