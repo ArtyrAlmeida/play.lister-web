@@ -1,4 +1,4 @@
-import { LoginAuthReponse } from "../../interfaces/auth.types";
+import { AuthResponse } from "../../interfaces/auth.types";
 import { apiUrl } from "../utils/utils"
 
 interface LoginData {
@@ -6,8 +6,8 @@ interface LoginData {
     password: string;
 }
 
-async function loginUser(formData: LoginData): Promise<LoginAuthReponse> {
-    const response = await fetch(`${apiUrl}/login`, {
+async function loginUser(formData: LoginData): Promise<AuthResponse> {
+    const response = await fetch(`${apiUrl}/user/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

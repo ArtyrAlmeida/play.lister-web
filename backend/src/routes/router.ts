@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import SongController from '../controllers/SongController';
 import { UserController } from '../controllers/UserController';
-import requireBasicAuth from '../middleware/requireAuth';
 import PlaylistController from '../controllers/PlaylistController';
 import { LikeController } from '../controllers/LikeController';
 
@@ -18,7 +17,7 @@ const userController = new UserController();
 userRouter.post('/login', userController.login);
 userRouter.post('/register', userController.register);
 userRouter.get('/:id', userController.find);
-userRouter.get('/analytics/:id', userController.analytics)
+/* userRouter.get('/analytics/:id', userController.analytics) */
 
 const playlistRouter = Router();
 const playlistController = new PlaylistController();

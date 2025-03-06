@@ -1,6 +1,6 @@
 import { ArrowCircleLeftOutlined, ArrowRight } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerSchema, { RegisterFormTypeSchema } from "./schemas/register.schema";
 import { withZodSchema } from "formik-validator-zod";
 import { TextField } from "@mui/material";
@@ -12,6 +12,7 @@ import logoSmall from '../../assets/images/Logo - Small.svg';
 
 const Register: React.FC = () => {
     const signIn = useSignIn()
+    const navigate = useNavigate()
 
     const { mutate: registerUserMutate } = useMutation({
         mutationFn: async (values: RegisterFormTypeSchema) => {
@@ -29,6 +30,7 @@ const Register: React.FC = () => {
                     name: data.name,
                 }
             })
+            navigate('/')
         }
     })
 
