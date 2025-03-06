@@ -1,9 +1,12 @@
-import { UserInterface, LoginInfo } from '../interfaces';
+import { UserInterface, LoginInfo, LikeInterface } from '../interfaces';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import RequestError from '../exceptions/RequestError';
 import UserRepository from '../repository/UserRepository';
 import { log } from 'console';
+import LikeRepository from '../repository/LikeRepository';
+import PlaylistRepository from '../repository/PlaylistRepository';
+import SongRepository from '../repository/SongRepository';
 
 export default class UserService {
     private repository = new UserRepository();
@@ -49,5 +52,25 @@ export default class UserService {
 
     signToken = async (id: string) => {
         return jwt.sign({id}, process.env.SECRET as string, {expiresIn: '3d'})
+    }
+
+    analytics = async (id: string) => {
+        const likeRepository = new LikeRepository();
+        const playlistRepository = new PlaylistRepository();
+        const songRepository = new SongRepository();
+
+        const userLikes = await likeRepository.findLikesByUser(id);
+        const userPlaylists = await playlistRepository.findByUser(id);
+        
+    }
+
+    private calcMostListened = async (id: string, playlistRepository: PlaylistRepository, songRepository: SongRepository) => {
+        const userPlaylists = await playlistRepository.findByUser(id);
+        const songsIds = userPlaylists.map(playlist => playlist.songs).flat();
+        const songs = await songRepository.findByArray(songsIds);
+    }
+
+    private calcMostLiked = async (likes: LikeInterface) => {
+
     }
 }

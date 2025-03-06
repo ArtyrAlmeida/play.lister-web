@@ -1,5 +1,5 @@
 import { Playlist } from '../../interfaces/playlist.types';
-import styles from './PlaylistItem.module.css';
+import styles from './PlaylistItem.module.scss';
 
 type PlaylistItemProps = Playlist;
 
