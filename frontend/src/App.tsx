@@ -1,5 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import './App.css'
@@ -8,24 +7,25 @@ import './global/_core.scss'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from './utils/queryClient'
 import About from './pages/About/About'
-
-const router = createBrowserRouter([
-  {
-    path: '/', element: <AuthOutlet fallbackPath="login" />,
-    children: [
-      { path: '', element: <Home /> },
-    ]
-  },
-  { path: 'about', element: <About /> },
-  { path: 'login', element: <Login /> },
-  { path: 'register', element: <Register /> },
-
-])
+import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
+import RouteProtector from './utils/RouteProtector'
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="/" element={<RouteProtector/>}>
+            <Route path='' element={<Home/>}/>
+            <Route path="about" element={<About />} />
+            <Route path="users" element={<Home />}>
+              <Route path="playlists" element={<UsersPlaylist />}/>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   )
 }

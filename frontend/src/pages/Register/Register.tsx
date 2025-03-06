@@ -37,6 +37,7 @@ const Register: React.FC = () => {
             email: '',
             password: '',
             name: '',
+            image: '',
         },
         validate: withZodSchema(registerSchema),
         onSubmit: async (values) => {
@@ -45,26 +46,31 @@ const Register: React.FC = () => {
     })
 
     return (
-        <>
+        <div id={styles['background']}>
             <div className={styles['logo']}>
                 <img src={logoSmall} alt='play.lister logo normal size' />
             </div>
             <form onSubmit={formik.handleSubmit} className={styles['form']}>
                 <div className={styles['form-group']}>
                     <div className={styles['form-control']}>
-                        <label htmlFor="name">Nome</label>
+                        <label className={styles['form-camp-tittle']} htmlFor="name">Nome</label>
                         <TextField className={styles['form-camp']} id="name" helperText={(formik.values.name && formik.errors.name) ? '' : 'Por favor, insira seu nome'} color={formik.errors.name ? "error" : "primary"} name="name" required variant="outlined" type="name" onChange={formik.handleChange} value={formik.values.name} />
                         {(formik.errors.name && formik.touched.name) && <div><p className={styles['form-error-message']}>{formik.errors.email}</p></div>}
                     </div>
                     <div className={styles['form-control']}>
-                        <label htmlFor="email">Email</label>
+                        <label className={styles['form-camp-tittle']} htmlFor="email">Email</label>
                         <TextField className={styles['form-camp']} id="email" helperText={(formik.values.email && formik.errors.email) ? '' : 'Por favor, insira seu e-mail'} color={formik.errors.email ? "error" : "primary"} name="email" required variant="outlined" type="email" onChange={formik.handleChange} value={formik.values.email} />
                         {(formik.errors.email && formik.touched.email) && <div><p className={styles['form-error-message']}>{formik.errors.email}</p></div>}
                     </div>
                     <div className={styles['form-control']}>
-                        <label htmlFor="password">Senha</label>
+                        <label className={styles['form-camp-tittle']} htmlFor="password">Senha</label>
                         <TextField className={styles['form-camp']} id="password" name="password" helperText={(formik.values.password && formik.errors.password) ? '' : 'Por favor, insira sua senha'} color={formik.errors.password ? "error" : "primary"} required variant="outlined" type="password" onChange={formik.handleChange} value={formik.values.password} />
                         {(formik.errors.password && formik.touched.password) && <div><p className={styles['form-error-message']}>{formik.errors.password}</p></div>}
+                    </div>
+                    <div className={styles['form-control']}>
+                        <label className={styles['form-camp-tittle']} htmlFor="image">Imagem de Perfil</label>
+                        <TextField className={styles['form-camp']} id="image" name="image" helperText={(formik.values.image && formik.errors.image) ? '' : 'Por favor, insira a url da sua imagem de perfil'} color={formik.errors.image ? "error" : "primary"} variant="outlined" type="text" onChange={formik.handleChange} value={formik.values.image} />
+                        {(formik.errors.image && formik.touched.image) && <div><p className={styles['form-error-message']}>{formik.errors.image}</p></div>}
                     </div>
                 </div>
                 <div className={styles['form-actions']}>
@@ -72,7 +78,7 @@ const Register: React.FC = () => {
                     <button type="submit" className={styles['form-action-button']}>Realizar Cadastro<ArrowRight className={styles['arrow-icon']} fontSize="large"/></button>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

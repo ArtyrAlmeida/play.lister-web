@@ -2,10 +2,26 @@ $mui-color: rgba(255, 255, 255, 0.87);
 $mui-color-clear: rgba(188, 188, 188, 0.87);
 $base-green: #32A851;
 
+#background {
+    height: inherit;
+    background-image: url('../../assets/images/LoginBG.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
     text-align: start;
+    width: 36vw;
+    max-width: 30rem;
+    min-width: 30rem;
+    gap: .5rem
 }
 
 .form-camp :global .MuiOutlinedInput-notchedOutline {
@@ -15,6 +31,10 @@ $base-green: #32A851;
 .form-camp :global .MuiOutlinedInput-input {
     background-color: white;
     border-radius: 5px;
+}
+
+.form-camp-tittle {
+    font-weight: bold;
 }
 
 .logo {
@@ -54,6 +74,7 @@ $base-green: #32A851;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    gap: .5rem
 }
 
 .form-action-button {
@@ -72,4 +93,24 @@ $base-green: #32A851;
     text-align: center;
     color: $base-green;
     font-size: 2.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .form-group {
+        width: 76vw;
+        min-width: 25rem;
+        max-width: 30rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .form-group {
+        max-width: 18rem;
+        min-width: 15rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        font-size: 0.80rem;
+    }
 }

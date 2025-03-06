@@ -45,19 +45,19 @@ const Login: React.FC = () => {
     })
 
     return (
-        <>
+        <div id={styles['background']}>
             <div className={styles['logo']}>
                 <img src={logo} alt='play.lister logo normal size' />
             </div>
-            <form onSubmit={formik.handleSubmit} className={styles['form']}>
+            <form onSubmit={formik.handleSubmit} id={styles['form']}>
                 <div className={styles['form-group']}>
                     <div className={styles['form-control']}>
-                        <label htmlFor="email">Email</label>
+                        <label className={styles['form-camp-tittle']} htmlFor="email">Email</label>
                         <TextField className={styles['form-camp']} id="email" helperText={(formik.values.email && formik.errors.email) ? '' : 'Por favor, insira seu e-mail'} color={formik.errors.email ? "error" : "primary"} name="email" required variant="outlined" type="email" onChange={formik.handleChange} value={formik.values.email} />
                         {(formik.errors.email && formik.touched.email) && <div><p className={styles['form-error-message']}>{formik.errors.email}</p></div>}
                     </div>
                     <div className={styles['form-control']}>
-                        <label htmlFor="password">Senha</label>
+                        <label className={styles['form-camp-tittle']} htmlFor="password">Senha</label>
                         <TextField className={styles['form-camp']} id="password" name="password" helperText={(formik.values.password && formik.errors.password) ? '' : 'Por favor, insira sua senha'} color={formik.errors.password ? "error" : "primary"} required variant="outlined" type="password" onChange={formik.handleChange} value={formik.values.password} />
                         {(formik.errors.password && formik.touched.password) && <div><p className={styles['form-error-message']}>{formik.errors.password}</p></div>}
                     </div>
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
                     <button type="submit" className={styles['form-action-button']} >Entrar<ArrowRight className={styles['arrow-icon']} fontSize="large"/></button>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

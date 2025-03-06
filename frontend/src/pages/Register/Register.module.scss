@@ -2,15 +2,34 @@ $mui-color: rgba(255, 255, 255, 0.87);
 $mui-color-clear: rgba(188, 188, 188, 0.87);
 $base-green: #32A851;
 
+#background {
+    height: inherit;
+    background-image: url('../../assets/images/CadastroBg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
     text-align: start;
-    width: 30rem;
+    width: 36vw;
+    max-width: 30rem;
+    min-width: 20rem;
+    gap: .5rem
 }
 
 .form-camp :global .MuiOutlinedInput-notchedOutline {
     border-color: $mui-color;
+}
+
+.form-camp-tittle {
+    font-weight: bold;
 }
 
 .logo {
@@ -23,6 +42,15 @@ $base-green: #32A851;
 
 .form-camp :global .MuiFormHelperText-root {
     color: $mui-color;
+}
+
+.form-camp :global .MuiOutlinedInput-notchedOutline {
+    border-color: $mui-color;
+}
+
+.form-camp :global .MuiOutlinedInput-input {
+    background-color: white;
+    border-radius: 5px;
 }
 
 .navigate-control {
@@ -50,6 +78,7 @@ $base-green: #32A851;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    gap: .5rem
 }
 
 .form-action-button {
@@ -68,4 +97,23 @@ $base-green: #32A851;
     text-align: center;
     color: $base-green;
     font-size: 2.5rem;
+}
+
+@media screen and (max-width: 500px) {
+    .form-group {
+        width: 96vw;
+        min-width: 15rem;
+        max-width: 20rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .form-group {
+        max-width: 15rem;
+        min-width: 10rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
 }
