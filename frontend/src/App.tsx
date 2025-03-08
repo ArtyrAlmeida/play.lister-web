@@ -9,6 +9,7 @@ import { queryClient } from './utils/queryClient'
 import About from './pages/About/About'
 import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
 import RouteProtector from './utils/RouteProtector'
+import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="playlists" element={<UsersPlaylist />}/>
             </Route>
           </Route>
+          <Route path='playlist/:id' element={<PlaylistDetails />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -13,6 +13,9 @@ const plalistSchema = new Schema<PlaylistInterface>({
         type: String,
         required: true
     },
+    authorName: {
+        type: String,
+    },
     songs: {
         type: [String],
         required: true,
@@ -23,6 +26,10 @@ const plalistSchema = new Schema<PlaylistInterface>({
     },
     image: {
         type: String,
+        required: true,
+    },
+    usersLiked: {
+        type: [String],
         required: true,
     }
 }, { timestamps: true });

@@ -36,7 +36,7 @@ export default class PlaylistRepository {
     }
 
     async updateOne(id: string, payload: object) {
-        const result = await Playlist.updateOne({ _id: id }, { $set: payload });
+        const result = await Playlist.updateOne({ _id: id }, payload);
 
         return result;
     }
