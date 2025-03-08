@@ -7,6 +7,18 @@ export default class LikeRepository {
         return newLike;
     }
 
+    async findOne(userId: string, playlistId: string) {
+        const like = await Like.findOne({ userId, playlistId });
+
+        return like;
+    }
+
+    async deleteOne(userId: string, playlistId: string) {
+        const like = await Like.deleteOne({ userId, playlistId });
+
+        return like;
+    }
+
     async findLikesByUser(userId: string) {
         const likes = await Like.find({ userId });
 

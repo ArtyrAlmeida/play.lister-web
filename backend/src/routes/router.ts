@@ -35,4 +35,6 @@ const likeController = new LikeController();
 
 likeRouter.get('/user/:id', likeController.findByUser);
 likeRouter.post('/', likeController.create);
+likeRouter.delete('/', likeController.deleteLike);
+
 export { playlistRouter, userRouter, songsRouter, likeRouter };

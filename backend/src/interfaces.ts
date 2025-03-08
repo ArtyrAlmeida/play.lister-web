@@ -11,8 +11,10 @@ interface PlaylistInterface {
     name: string,
     createdAt?: Date | string,
     author: string,
+    authorName: string;
     songs: string[],
     image: string,
+    usersLiked: string[],
 }
 
 interface UserInterface {

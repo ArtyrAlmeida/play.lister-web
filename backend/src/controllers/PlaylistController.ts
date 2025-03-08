@@ -2,13 +2,13 @@ import PlaylistService from '../services/PlaylistService';
 import RequestError from '../exceptions/RequestError';
 import { Request, Response } from 'express';
 
-export default class SongController {
+export default class PlaylistController {
     private service = new PlaylistService();
     
     create = async (req: Request, res: Response) => {
-        const song = req.body;
+        const playlist = req.body;
         try {
-            const response = await this.service.create(song);
+            const response = await this.service.create(playlist);
             res.status(201).json(response);
         } catch (error) {
             const requestError = error as RequestError;

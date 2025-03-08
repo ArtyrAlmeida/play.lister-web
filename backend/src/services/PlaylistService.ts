@@ -4,6 +4,7 @@ import RequestError from '../exceptions/RequestError';
 import PlaylistRepository from '../repository/PlaylistRepository';
 import SongRepository from '../repository/SongRepository';
 import { log } from 'console';
+import UserRepository from '../repository/UserRepository';
 
 export default class playlistservice {
     private repository = new PlaylistRepository();
@@ -15,6 +16,9 @@ export default class playlistservice {
         if(await PlaylistValidator.playlistAlreadyExists(playlist)) {
             throw new RequestError('Essa playlist já existe', 422);
         }
+
+        const user = await (new UserRepository).findById(playlist.author);
+        playlist.authorName = user!.name;
 
         const response = await this.repository.create(playlist);
 
@@ -79,7 +83,7 @@ export default class playlistservice {
             throw new RequestError('O id provido é inválido', 400);
         }
 
-        const response = await this.repository.updateOne(id, payload);
+        const response = await this.repository.updateOne(id, { $set: payload });
 
         return response;
     }
