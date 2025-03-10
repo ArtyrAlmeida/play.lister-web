@@ -23,7 +23,7 @@ const PlaylistDetails: React.FC = () => {
         return <div>
             <PlaylistDetailsHeader playlist={data} />
             <div>
-                { data.songs && data.songs.map(song => <SongItem key={song} songId={song} />) }
+                { data.songs && data.songs.map(song => <SongItem key={song} songId={song} isForm={false} />) }
             </div>
         </div>
     }

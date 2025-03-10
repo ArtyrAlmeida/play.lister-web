@@ -11,6 +11,8 @@ import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
 import RouteProtector from './utils/RouteProtector'
 import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
 import PlaylistsByType from './pages/Users/Playlist/PlaylistByType/PlaylistByType'
+import CreatePlaylist from './pages/CreatePlaylist/CreatePlaylist'
+import EditPlaylist from './pages/EditPlaylist/EditPlaylist'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
           </Route>
           <Route path='playlist/:id' element={<PlaylistDetails />} />
+          <Route path='playlist/create' element={<CreatePlaylist />} />
+          <Route path='playlist/edit/:id' element={<EditPlaylist />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

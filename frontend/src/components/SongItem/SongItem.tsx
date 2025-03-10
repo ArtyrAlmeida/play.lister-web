@@ -3,11 +3,17 @@ import { getSong } from "../../api/songs/getSong";
 
 import styles from "./SongItem.module.scss";
 
-interface SongItemProps {
-    songId: string
+type SongItemProps = {
+    songId: string,
+    isForm: false
+} | {
+    songId: string,
+    isForm: true;
+    onDeletion: (id: string) => void;
 }
 
-const SongItem: React.FC<SongItemProps> = ({ songId }) => {
+const SongItem: React.FC<SongItemProps> = (props) => {
+    const songId = props.songId;
     const { data, isLoading, error } = useQuery({
         refetchOnWindowFocus: false,
         queryKey: [`song-${songId}`, songId],
@@ -32,6 +38,7 @@ const SongItem: React.FC<SongItemProps> = ({ songId }) => {
                     <p>{data.genre}</p>
                 </div>
             </div>
+            { props.isForm && <button onClick={() => props.onDeletion(songId)}>Excluir</button> }
         </div>
     }
 }

@@ -3,8 +3,6 @@ import PlaylistItem from "../PlaylistItem/PlaylistItem";
 import NoContent from "../NoContent/NoContent";
 import { Warning } from "@mui/icons-material";
 import styles from './PlaylistList.module.scss'
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 import { Grid2 } from "@mui/material";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { NavLink } from "react-router-dom";
