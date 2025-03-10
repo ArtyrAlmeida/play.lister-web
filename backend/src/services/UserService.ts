@@ -12,7 +12,7 @@ export default class UserService {
     private repository = new UserRepository();
 
     register = async (user: UserInterface) => {
-        const { name, email, password } = user;
+        const { name, email, password, image } = user;
         
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
@@ -23,7 +23,7 @@ export default class UserService {
 
         const token = await this.signToken(id);
 
-        return { name, email, token, id };
+        return { name, email, token, id, image };
     };
 
     login = async (user: LoginInfo) => {

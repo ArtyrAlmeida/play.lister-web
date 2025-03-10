@@ -1,16 +1,9 @@
-interface LoginAuthReponse {
+interface AuthResponse {
     name: string;
     email: string;
     token: string;
     id: string;
-    image?: string;
+    image: string;
 }
 
-interface RegisterAuthResponse {
-    name: string;
-    email: string;
-    token: string;
-    id: string;
-}
-
-export type { LoginAuthReponse, RegisterAuthResponse }
+export type { AuthResponse }

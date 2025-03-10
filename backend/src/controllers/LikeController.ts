@@ -28,4 +28,16 @@ export class LikeController {
             console.log(error);
         }
     };
+
+    deleteLike = async (req: Request, res: Response) => {
+        const { playlist, user } = req.query
+
+        try {
+            const response = await this.service.deleteLike(user as string, playlist as string);
+            res.status(200).json({ message: response.acknowledged });
+        } catch (error) {
+            res.status(400).json({ error: 'Não foi possível completar sua requisição' });
+            console.log(error);
+        }
+    }
 }

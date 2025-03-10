@@ -1,4 +1,4 @@
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import './App.css'
@@ -9,6 +9,10 @@ import { queryClient } from './utils/queryClient'
 import About from './pages/About/About'
 import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
 import RouteProtector from './utils/RouteProtector'
+import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
+import PlaylistsByType from './pages/Users/Playlist/PlaylistByType/PlaylistByType'
+import CreatePlaylist from './pages/CreatePlaylist/CreatePlaylist'
+import EditPlaylist from './pages/EditPlaylist/EditPlaylist'
 
 function App() {
   return (
@@ -20,10 +24,13 @@ function App() {
           <Route path="/" element={<RouteProtector/>}>
             <Route path='' element={<Home/>}/>
             <Route path="about" element={<About />} />
-            <Route path="users" element={<Home />}>
-              <Route path="playlists" element={<UsersPlaylist />}/>
-            </Route>
+            <Route path="users/playlists" element={<UsersPlaylist />}/>
+            <Route path="users/playlists/created" element={<PlaylistsByType />}/>
+            <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
           </Route>
+          <Route path='playlist/:id' element={<PlaylistDetails />} />
+          <Route path='playlist/create' element={<CreatePlaylist />} />
+          <Route path='playlist/edit/:id' element={<EditPlaylist />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

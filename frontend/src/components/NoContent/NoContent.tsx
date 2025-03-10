@@ -7,10 +7,10 @@ interface NoContentProps {
 
 function NoContent({ icon, message }: NoContentProps) {
     return (
-        <div>
+        <>
             {icon}
             <p>{message}</p>
-        </div>
+        </>
     );
 }
 

@@ -2,13 +2,13 @@ import PlaylistService from '../services/PlaylistService';
 import RequestError from '../exceptions/RequestError';
 import { Request, Response } from 'express';
 
-export default class SongController {
+export default class PlaylistController {
     private service = new PlaylistService();
     
     create = async (req: Request, res: Response) => {
-        const song = req.body;
+        const playlist = req.body;
         try {
-            const response = await this.service.create(song);
+            const response = await this.service.create(playlist);
             res.status(201).json(response);
         } catch (error) {
             const requestError = error as RequestError;
@@ -55,6 +55,18 @@ export default class SongController {
 
         try {
             const response = await this.service.findByUser(id);
+            res.status(200).json(response);
+        } catch (error) {
+            const requestError = error as RequestError;
+            res.status(requestError.code || 400).json({ error: requestError.message });
+        }
+    };
+
+    findUserLiked = async (req: Request, res: Response) => {
+        const { id } = req.params;
+
+        try {
+            const response = await this.service.findByUserLike(id);
             res.status(200).json(response);
         } catch (error) {
             const requestError = error as RequestError;

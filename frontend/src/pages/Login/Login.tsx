@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowCircleRightOutlined, ArrowRight } from "@mui/icons-material";
 import { TextField } from "@mui/material";
 import { useFormik } from 'formik';
@@ -12,6 +12,7 @@ import logo from '../../assets/images/Logo.svg'
 
 const Login: React.FC = () => {
     const signIn = useSignIn()
+    const navigate = useNavigate()
 
     const { mutate: loginUserMutate } = useMutation({
         mutationFn: async (values: LoginFormTypeSchema) => {
@@ -30,6 +31,7 @@ const Login: React.FC = () => {
                     image: data.image || undefined,
                 }
             })
+            navigate('/')
         }
     })
 
