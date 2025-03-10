@@ -44,7 +44,7 @@ export default class PlaylistRepository {
     }
 
     async updateOne(id: string, payload: object) {
-        const result = await Playlist.updateOne({ _id: id }, payload);
+        const result = await Playlist.findOneAndUpdate({ _id: id }, payload);
 
         return result;
     }
