@@ -10,6 +10,7 @@ import About from './pages/About/About'
 import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
 import RouteProtector from './utils/RouteProtector'
 import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
+import PlaylistsByType from './pages/Users/Playlist/PlaylistByType/PlaylistByType'
 
 function App() {
   return (
@@ -21,9 +22,9 @@ function App() {
           <Route path="/" element={<RouteProtector/>}>
             <Route path='' element={<Home/>}/>
             <Route path="about" element={<About />} />
-            <Route path="users" element={<Home />}>
-              <Route path="playlists" element={<UsersPlaylist />}/>
-            </Route>
+            <Route path="users/playlists" element={<UsersPlaylist />}/>
+            <Route path="users/playlists/created" element={<PlaylistsByType />}/>
+            <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
           </Route>
           <Route path='playlist/:id' element={<PlaylistDetails />} />
         </Routes>

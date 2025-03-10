@@ -60,6 +60,24 @@ export default class playlistservice {
         return response;
     };
 
+    findByUserLike = async(id: string) => {
+        if (!PlaylistValidator.isValidId(id)) {
+            throw new RequestError('O id provido é inválido', 400);
+        }
+        const response = await this.repository.findUserLiked(id);
+
+        const formattedDates = response.map(playlist => {
+            const date = new Date(playlist.createdAt!);
+            const day =  date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            const formattedDate = `${day}/${month}/${year}`;
+            return { ...playlist.toObject(), createdAt: formattedDate };
+        })
+
+        return formattedDates;
+    }
+
     findByUser = async (id: string) => {
         if (!PlaylistValidator.isValidId(id)) {
             throw new RequestError('O id provido é inválido', 400);

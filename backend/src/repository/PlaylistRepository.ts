@@ -1,4 +1,5 @@
 import { PlaylistInterface } from '../interfaces';
+import Like from '../models/Like';
 import Playlist from '../models/Playlist';
 import Song from '../models/Song';
 
@@ -33,6 +34,13 @@ export default class PlaylistRepository {
         const result = await Playlist.find({ author: id });
         
         return result;
+    }
+
+    async findUserLiked(id: string) {
+        const likes = (await Like.find({ userId: id})).map((like) => like.playlistId)
+        const likedPlaylists = await Playlist.find({ $in: likes })
+
+        return likedPlaylists
     }
 
     async updateOne(id: string, payload: object) {
