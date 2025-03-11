@@ -5,15 +5,13 @@ import { useParams } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../interfaces/auth.types";
 
+import styles from "./EditPlaylist.module.scss";
+
 const EditPlaylist: React.FC = () => {
     const params = useParams();
     const playlistId = params.id as string;
 
-    const user = useAuthUser<AuthResponse>();
-    if (user?.id != playlistId) {
-        return <div><h1>Essa playlist não é sua</h1></div>
-    }
-
+    
     const { data, isLoading, error } = useQuery({
         refetchOnWindowFocus: false,
         queryKey: [`playlist-${playlistId}`, playlistId],
@@ -21,6 +19,12 @@ const EditPlaylist: React.FC = () => {
             return await getPlaylist(playlistId)
         }
     });
+    
+    const user = useAuthUser<AuthResponse>();
+
+    if (data && user?.id != data.author) {
+        return <div><h1>Essa playlist não é sua</h1></div>
+    }
 
     if (isLoading) {
         <h2>Loanding</h2>
@@ -30,7 +34,7 @@ const EditPlaylist: React.FC = () => {
         <h2>Erro</h2>
     }
 
-    return <div>
+    return <div id={styles.background}>
         { 
             data && 
             <PlaylistForm 
