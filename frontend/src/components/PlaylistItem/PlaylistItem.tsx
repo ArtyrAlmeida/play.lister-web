@@ -10,8 +10,9 @@ function PlaylistItem({ image, name, createdAt }: PlaylistItemProps) {
     return (
         <div className={styles['playlist-item']}>
             <div className={styles['playlist-image']} style={{
-                backgroundImage: image,
-                backgroundSize: 'cover'
+                backgroundImage: `url(${image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
             }}/>
             <p className={styles['playlist-tittle']}>{name}</p>
             <p className={styles['playlist-creation-date']}>{createdAt?.toString()}</p>
