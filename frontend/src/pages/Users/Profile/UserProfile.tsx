@@ -52,7 +52,10 @@ const UserProfile: React.FC = () => {
 					<ProfilePictureDisplay className={styles.profileImage} profilePicture={userImage} />
 					<div className={styles.profileInfo}>
 						<h1>{username}</h1>
-						<b className={styles.userGenres} >Gêneros favoritos: {genres.join(", ")} </b>
+						{
+							genres.length != 0 && 
+							<b className={styles.userGenres} >Gêneros favoritos: {genres.join(", ")} </b>
+						}
 					</div>
 					{ userId === user.id && 
 						<div className={styles.buttons}>
