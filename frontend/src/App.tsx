@@ -12,6 +12,7 @@ import RouteProtector from './utils/RouteProtector'
 import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
 import PlaylistsByType from './pages/Users/Playlist/PlaylistByType/PlaylistByType'
 import UserProfile from './pages/Users/Profile/UserProfile'
+import UserEdit from './pages/Users/Edit/UserEdit'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path='' element={<Home/>}/>
             <Route path="about" element={<About />} />
             <Route path='profile' element={<UserProfile />} />
+            <Route path='profile/edit' element={<UserEdit />} />
             <Route path="users/playlists" element={<UsersPlaylist />}/>
             <Route path="users/playlists/created" element={<PlaylistsByType />}/>
             <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
