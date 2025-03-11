@@ -6,13 +6,16 @@ import search from '../../../assets/images/search.svg';
 import edit from '../../../assets/images/edit.svg';
 import Post, { PostProps } from '../../../components/Post/Post';
 import imgg from '../../../assets/images/Logo.svg';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../../interfaces/auth.types";
 import { useQueries } from "@tanstack/react-query";
 import { findUser } from "../../../api/user";
 
 const UserProfile: React.FC = () => {
+
+	const navigate = useNavigate();
+
 	const params = useParams();
 	const user : AuthResponse = useAuthUser<AuthResponse>() || {id: "", email: "", name: "", image: "", token: ""};
 	const userId = params.id as string || user.id;
@@ -60,7 +63,12 @@ const UserProfile: React.FC = () => {
 					{ userId === user.id && 
 						<div className={styles.buttons}>
 							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} />
-							<DefaultButton className={styles.editButton}  text="Editar perfil" icon={edit} />
+							<DefaultButton 
+								className={styles.editButton}  
+								text="Editar perfil" 
+								icon={edit} 
+								onClick={() => navigate('/profile/edit')} 
+							/>
 						</div>
 					}
 				</div>
