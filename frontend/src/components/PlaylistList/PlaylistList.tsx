@@ -18,7 +18,7 @@ function PlaylistList({ playlists, listTittle, playlistRouting }: PlaylistListPr
     const { width } = useWindowDimensions();
     let playlistItems = playlists.slice(0,5);
     if(width > 1200) {
-        playlistItems = [...playlists]
+        playlistItems = playlists.slice(0,5);
     }
     else if(width > 900) {
         playlistItems =  playlists.slice(0,4)

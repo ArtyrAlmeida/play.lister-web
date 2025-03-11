@@ -46,14 +46,14 @@ function PlaylistsByType() {
     }
 
     if(data && data.length > 0) {
-        <div>
+        content = <div>
             <h1>Playlists {routeType === 'liked' ? 'Curtidas' : 'Públicas'}</h1>
             <Grid2 container spacing={1} columns={{ xs: (itemSize * 2), sm: (itemSize * 3), md: (itemSize * 4), lg: (itemSize * 5) }}>
             {
-                data.map((playlist) => {
+                data.map((playlist, index) => {
                     return (
-                        <Grid2 display="flex" justifyContent="center" alignItems="center" size={itemSize}>
-                            <PlaylistItem key={playlist.name} createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
+                        <Grid2 key={`${playlist.name}_${index}`}  display="flex" justifyContent="center" alignItems="center" size={itemSize}>
+                            <PlaylistItem createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
                         </Grid2>
                     )
                 })
