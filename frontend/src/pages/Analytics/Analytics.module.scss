@@ -1,0 +1,31 @@
+.page {
+    padding: 5.5em 10.5em 14em;
+    display: flex;
+    flex-direction: column;
+    gap: 7em;
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: #32A851;
+    }
+}
+
+.metric {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 900px) {
+    .page {
+        padding: 3em 3em;
+    }
+    .metric {
+        flex-direction: column;
+        gap: 3em;
+        align-items: center;
+    }
+    .inverse {
+        flex-direction: column-reverse;
+    }
+}

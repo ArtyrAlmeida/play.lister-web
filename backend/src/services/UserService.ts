@@ -55,22 +55,91 @@ export default class UserService {
     }
 
     analytics = async (id: string) => {
-        const likeRepository = new LikeRepository();
         const playlistRepository = new PlaylistRepository();
         const songRepository = new SongRepository();
+        const userRepository = new UserRepository();
 
-        const userLikes = await likeRepository.findLikesByUser(id);
-        const userPlaylists = await playlistRepository.findByUser(id);
+        const mostListened = await this.calcMostListened(id, playlistRepository, songRepository);
+        const mostLiked = await this.calcMostLiked(id, playlistRepository, userRepository);
+        const playlistsCreated = await this.calcPlaylistsCreated(id, playlistRepository);
+
+        return {
+            mostListened,
+            mostLiked,
+            playlistsCreated
+        }
         
     }
 
     private calcMostListened = async (id: string, playlistRepository: PlaylistRepository, songRepository: SongRepository) => {
         const userPlaylists = await playlistRepository.findByUser(id);
         const songsIds = userPlaylists.map(playlist => playlist.songs).flat();
+        
         const songs = await songRepository.findByArray(songsIds);
+
+        const occurrences = songsIds.reduce(function (acc, curr) {
+            const key = songs.find(song => song.id == curr)!.author;
+            return acc[key] ? ++acc[key] : acc[key] = 1, acc
+        }, {} as { [key: string]: number });
+
+        const sorted = this.getTop(occurrences);
+
+        const entries = sorted.map(result => result[0]);
+        const values = sorted.map(result => result[1]);
+
+        return { labels: entries, values: values };
+
     }
 
-    private calcMostLiked = async (likes: LikeInterface) => {
+    private calcMostLiked = async (id: string, playlistRepository: PlaylistRepository, userRepository: UserRepository) => {
+        const playlists = await playlistRepository.findPlaylistsLikedByUser(id);
+        const userIds = playlists.map(playlist => playlist.author);
 
+        const users = await userRepository.findByArray(userIds);
+
+        const occurrences = userIds.reduce(function (acc, curr) {
+            return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+        }, {} as { [key: string]: number });
+
+        const sorted = this.getTop(occurrences);
+
+        const entries = sorted.map(result => {
+            const id = result[0];
+            return users.find(user => user._id == id)!.name;
+        });
+
+        const values = sorted.map(result => result[1]);
+
+        return { labels: entries, values: values };
+    }
+
+    private calcPlaylistsCreated = async (id: string, playlistRepository: PlaylistRepository) => {
+        const months = this.getThreeMonths();
+        const results = await Promise.all(months.map(async (month) => {
+            return [month, (await playlistRepository.findPlaylistsByMonth(id, month)).length]
+        }));
+
+        const entries = results.map(result => result[0]);
+        const values = results.map(result => result[1]);
+
+        return { labels: entries, values: values };
+    }
+
+    getTop(obj: { [key: string]: number }) {
+        return Object.entries(obj)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 6); 
+    }
+
+    getThreeMonths() {
+        const currentDate = new Date();
+        const months = [];
+        
+        for (let i = 0; i < 3; i++) {
+            let date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
+            months.push(date.toISOString().slice(0, 7));
+        }
+        
+        return months;
     }
 }
