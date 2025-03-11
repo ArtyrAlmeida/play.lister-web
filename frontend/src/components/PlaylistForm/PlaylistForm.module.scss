@@ -1,0 +1,118 @@
+$base-green: #32A851;
+$mui-color: rgba(255, 255, 255, 0.87);
+
+.navigate-control {
+    color: $base-green;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: .25rem;
+    text-decoration: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em
+}
+
+.form-control {
+    width: 27em;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: .5rem;
+    text-align: start;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 36vw;
+    max-width: 30rem;
+    min-width: 30rem;
+    gap: .5rem
+}
+
+.form-camp :global .MuiOutlinedInput-notchedOutline {
+    border-color: $mui-color;
+}
+
+.form-camp :global .MuiOutlinedInput-input {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.form-camp :global .MuiFormHelperText-root {
+    color: $mui-color;
+}
+
+.form-camp-tittle {
+    font-weight: bold;
+}
+
+.songs-list {
+    width: 64em;
+}
+
+.image {
+    width: 12em;
+    height: 12em;
+}
+
+.bold-button {
+    width: 100%;
+    font-family: "Anton", sans-serif;
+    font-size: 1.5rem;
+    background-color: #32A851;
+    border: 0;
+    border-radius: 5px;
+    padding: .5em 0 .5em 0;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit {
+    width: 272px;
+}
+
+
+@media screen and (max-width: 1050px) {
+    .songs-list {
+        width: 40em;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .songs-list {
+        width: 18em;
+    }
+
+    .form-control {
+        width: 15em;
+    }
+
+    .form-group {
+        max-width: 15rem;
+        min-width: 10rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .bold-button {
+        font-size: 1rem;
+    }
+}

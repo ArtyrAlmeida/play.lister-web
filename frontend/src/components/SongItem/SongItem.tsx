@@ -3,6 +3,8 @@ import { getSong } from "../../api/songs/getSong";
 
 import styles from "./SongItem.module.scss";
 
+import Trash from "../../assets/images/Trash.svg"
+
 type SongItemProps = {
     songId: string,
     isForm: false
@@ -26,19 +28,21 @@ const SongItem: React.FC<SongItemProps> = (props) => {
     if (error || (!isLoading && !data)) return <h1>Error</h1>
 
     if (data) {
-        return <div>
+        return <div className={styles["song"]}>
             <img className={styles["song-image"]} src={data.image} alt={`Imagem da playlist ${data.name}`} />
-            <div>
-                <div>
-                    <h3>{data.name}</h3>
-                    <p>{data.author}</p>
+            <div className={styles["song-info"]}>
+                <div className={styles["top"]}>
+                    <div>
+                        <h3>{data.name}</h3>
+                        <p>{data.author}</p>
+                    </div>
+                    { props.isForm && <img className={styles["trash"]} src={Trash} onClick={() => props.onDeletion(songId)} /> }
                 </div>
-                <div>
+                <div className={styles["bottom"]}>
                     <p>{data.length}</p>
                     <p>{data.genre}</p>
                 </div>
             </div>
-            { props.isForm && <button onClick={() => props.onDeletion(songId)}>Excluir</button> }
         </div>
     }
 }

@@ -3,16 +3,20 @@ import { useEffect, useState } from "react";
 import { getAllSongs } from "../../api/songs/getAllSongs";
 import { Song } from "../../interfaces/music.types";
 
+import Close from "../../assets/images/Close.svg";
+
+import styles from "./SongModal.module.scss";
+import TextField from "@mui/material/TextField";
+
 interface SongModalProps {
     onAddSong: (id: string) => void;
     alreadyAddedSongs: string[];
     onCloseModal: () => void;
 }
 
-const SongModal: React.FC<SongModalProps> = ({ onAddSong, alreadyAddedSongs }) => {
+const SongModal: React.FC<SongModalProps> = ({ onAddSong, alreadyAddedSongs, onCloseModal }) => {
     const [searchInput, setSearchInput] = useState<string>("");
     const [songs, setSongs] = useState<Song[]>([]);
-    
 
     const { data, isLoading, error } = useQuery({
         refetchOnWindowFocus: false,
@@ -54,29 +58,30 @@ const SongModal: React.FC<SongModalProps> = ({ onAddSong, alreadyAddedSongs }) =
         </div>
     }
 
-    return <div>
-        <button>Fechar</button>
-        <div>
-            <label htmlFor="song-search">Buscar Música</label>
-            <input id="song-search" value={searchInput} onChange={(event) => setSearchInput(event.target.value)} name="Pesquisa de músicas" type="text" />
-        </div>
-        <div>
-            { songs && songs.map(song => (
-                <div key={song._id!} onClick={() => onAddSong(song._id!)}>
-                    <img style={{display: "none"}} src={song.image} alt={`Imagem da música ${song.name}`} />
-                    <div>
-                        <div>
-                            <h4>{song.name}</h4>
-                            <p>{song.author}</p>
-                        </div>
-                        <div>
-                            <p>{song.genre}</p>
+    return <>
+        <div className={styles.modal}>
+            <img className={styles.close} src={Close} alt="Fechar adição de músicas" onClick={onCloseModal} />
+            <div className={styles['form-control']}>
+                <label className={styles['form-camp-tittle']} htmlFor="song-search">Buscar Música</label>
+                <TextField className={styles['form-camp']} id="song-search" color={"primary"} name="Pesquisa de músicas" required variant="outlined" type="text" onChange={(event) => setSearchInput(event.target.value)} value={searchInput}  />
+            </div>
+            <div className={styles.list}>
+                { songs && songs.map(song => (
+                    <div className={styles.song} key={song._id!} onClick={() => onAddSong(song._id!)}>
+                        <img src={song.image} alt={`Imagem da música ${song.name}`} />
+                        <div className={styles["song-info"]}>
+                            <div className={styles["top"]}>
+                                <h3>{song.name}</h3>
+                                <p>{song.author}</p>
+                            </div>
+                            <p className={styles.bottom}>{song.length}</p>
                         </div>
                     </div>
-                </div>
-            )) }
+                )) }
+            </div>
         </div>
-    </div>
+        <div className={styles["black-box"]} onClick={onCloseModal}></div>
+    </>
 }
 
 export default SongModal;
