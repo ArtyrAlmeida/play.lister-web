@@ -23,7 +23,11 @@ const userSchema = new Schema<UserInterface>({
     image: {
         type: String,
         required: true,
-    }
+    },
+    favoriteGenres: {
+        type: [String],
+        required: false
+    },
 });
 
 const User = mongoose.model("users", userSchema);

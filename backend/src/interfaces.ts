@@ -24,6 +24,7 @@ interface UserInterface {
     password: string,
     playlists?: string[],
     image: string,
+    favoriteGenres?: string[],
 }
 
 interface LikeInterface {

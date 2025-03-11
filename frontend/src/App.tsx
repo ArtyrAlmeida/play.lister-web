@@ -24,12 +24,12 @@ function App() {
           <Route path="/" element={<RouteProtector/>}>
             <Route path='' element={<Home/>}/>
             <Route path="about" element={<About />} />
+            <Route path='profile' element={<UserProfile />} />
             <Route path="users/playlists" element={<UsersPlaylist />}/>
             <Route path="users/playlists/created" element={<PlaylistsByType />}/>
             <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
           </Route>
           <Route path='playlist/:id' element={<PlaylistDetails />} />
-          <Route path='profile' element={<UserProfile />} />
           <Route path='profile/:id' element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
