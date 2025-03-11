@@ -29,6 +29,25 @@ export default class PlaylistRepository {
         return result;
     }
 
+    async findPlaylistsByMonth(id: string, month: string) {
+        const query: any = {
+            $expr: {
+              "$regexMatch": {
+                "input": {
+                  "$toString": "$createdAt"
+                },
+                "regex": new RegExp(month, "i")
+              }
+            }
+        }
+
+        if (id != "") query["author"] = id;
+
+        const playlists = await Playlist.find(query);
+
+        return playlists;
+    }
+
     async findByUser(id: string) {
         const playlist = await this.findOne(id);
         const result = await Playlist.find({ author: id });
@@ -51,6 +70,12 @@ export default class PlaylistRepository {
 
     async deleteOne(id: string) {
         const result = await Playlist.deleteOne({ _id: id });
+
+        return result;
+    }
+
+    async findPlaylistsLikedByUser(id: string) {
+        const result = await Playlist.find({ usersLiked: id });
 
         return result;
     }

@@ -6,13 +6,16 @@ import { toggleLikeRequest } from "../../api/likes/toggleLike";
 import Cancel from '../../assets/images/Cancel.svg';
 import Heart from '../../assets/images/Heart.svg';
 import Pencil from '../../assets/images/Pencil.svg';
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { AuthResponse } from "../../interfaces/auth.types";
 
 interface PlaylistDetailsButtonProps {
     playlist: Playlist
 }
 
 const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist }) => {
-    const userId = "67c7516772cabf569761e217";
+    const user = useAuthUser<AuthResponse>();
+    const userId = user!.id
 
     const [isLiked, setIsLiked] = useState<boolean>(playlist.usersLiked.includes(userId));
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,11 +36,11 @@ const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist 
     }
     
     if (playlist.author != userId) return (
-        <Link to="/edit">
+        <Link to={`/playlist/edit/${playlist._id}`}>
             <button>
                 <p>Editar playlist</p>
                 <img src={ Pencil } alt="Botão para editar a playlist" />
-            </button>
+            </button> 
         </Link>
     )
 

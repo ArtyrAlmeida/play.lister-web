@@ -38,4 +38,15 @@ export class UserController {
             res.status(requestError.code || 400).json({ error: requestError.message });
         }
     };
+
+    analytics = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        try {
+            const response = await this.service.analytics(id);
+            res.status(201).json(response);
+        } catch (error) {
+            const requestError = error as RequestError;
+            res.status(requestError.code || 400).json({ error: requestError.message });
+        }
+    };
 }

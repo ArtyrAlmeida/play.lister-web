@@ -30,7 +30,7 @@ const PlaylistForm: React.FC<CreatePlaylistProps> = (props) => {
     const [isModalActive, setIsModalActive] = useState<boolean>(false);
     const navigate = useNavigate()
 
-    const user = { id: "67c7516772cabf569761e217", name: "Artur" };
+    const user = useAuthUser<AuthResponse>();
     
     const formik = useFormik({
         initialValues: props.mode == "edit" ? props.initialValues : {
@@ -57,7 +57,6 @@ const PlaylistForm: React.FC<CreatePlaylistProps> = (props) => {
                     navigate(`/playlist/${result._id!}`);
                 } catch (error) {
                     console.log(error);
-                    
                 }
             }
         }

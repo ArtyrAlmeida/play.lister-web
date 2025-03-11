@@ -2,10 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import PlaylistForm from "../../components/PlaylistForm/PlaylistForm";
 import { getPlaylist } from "../../api/playlists/getPlaylist";
 import { useParams } from "react-router-dom";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { AuthResponse } from "../../interfaces/auth.types";
 
 const EditPlaylist: React.FC = () => {
     const params = useParams();
     const playlistId = params.id as string;
+
+    const user = useAuthUser<AuthResponse>();
+    if (user?.id != playlistId) {
+        return <div><h1>Essa playlist não é sua</h1></div>
+    }
 
     const { data, isLoading, error } = useQuery({
         refetchOnWindowFocus: false,
