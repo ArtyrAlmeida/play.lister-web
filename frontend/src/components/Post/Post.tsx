@@ -3,7 +3,7 @@ import styles from "./Post.module.scss";
 export interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
 	title: string;
 	body: string;
-	date: Date;
+	date?: Date;
 	thumbnail?: string;
 }
 

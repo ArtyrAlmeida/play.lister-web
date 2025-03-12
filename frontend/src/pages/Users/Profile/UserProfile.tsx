@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
 import search from '../../../assets/images/search.svg';
 import edit from '../../../assets/images/edit.svg';
 import Post, { PostProps } from '../../../components/Post/Post';
-import imgg from '../../../assets/images/Logo.svg';
 import { useNavigate, useParams } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../../interfaces/auth.types";
 import { useQueries } from "@tanstack/react-query";
 import { findUser } from "../../../api/user";
+import { getUserPlaylists } from '../../../api/playlists/getUserPlaylists';
+import { Playlist } from '../../../interfaces/playlist.types';
 
 const UserProfile: React.FC = () => {
 
@@ -28,29 +29,37 @@ const UserProfile: React.FC = () => {
 	const results = useQueries({
 		queries: [
 			{ queryKey: ['user', userId,'genres'], queryFn: async () => await findUser(userId), staleTime: Infinity },
+			{ queryKey: ['user', userId,'playlists', 'created'], queryFn: async () => await getUserPlaylists(userId), staleTime: Infinity },
 		],
 	})
+
+	const [userInfoQuery, createdPlaylistsQuery] = results;
 	useEffect(() => {
 		// Fetch genres from user
-		if (results[0].isSuccess) {
+		if (userInfoQuery.isSuccess) {
 			console.log(results);
 			console.log(user)
-			setUsername(results[0].data.name ? results[0].data.name : "Username");
-			setUserImage(results[0].data.image ? results[0].data.image : "");
-			setGenres(results[0].data.favoriteGenres ? results[0].data.favoriteGenres : []);
+			setUsername(userInfoQuery.data.name ? userInfoQuery.data.name : "Username");
+			setUserImage(userInfoQuery.data.image ? userInfoQuery.data.image : "");
+			setGenres(userInfoQuery.data.favoriteGenres ? userInfoQuery.data.favoriteGenres : []);
 		}
-		setPosts([
-			{title: "titulo da postagem", body: "X musicas", date: new Date()},
-			{title: "titulo da postagem", body: "X musicas", date: new Date(), thumbnail: imgg},{title: "titulo da postagem", body: "X musicas", date: new Date()},
-			{title: "titulo da postagem", body: "X musicas", date: new Date(), thumbnail: imgg},{title: "titulo da postagem", body: "X musicas", date: new Date()},
-			{title: "titulo da postagem", body: "X musicas", date: new Date(), thumbnail: imgg},
-		])
 
+		if(createdPlaylistsQuery.isSuccess) {
+			console.log(createdPlaylistsQuery.data);
+			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
+			console.log(playlists);
+			setPosts(playlists.map(playlist => ({
+				title: playlist.name, 
+				body: playlist.authorName, 
+				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt) : playlist.createdAt, 
+				thumbnail: playlist.image
+			})));
+		}
 	}
-	, [results[0].data]);
+	, [userInfoQuery.isSuccess, createdPlaylistsQuery.isSuccess]);
 
 		return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${styles.background}`}>
 				<div className={styles.profile}>
 					<ProfilePictureDisplay className={styles.profileImage} profilePicture={userImage} />
 					<div className={styles.profileInfo}>
