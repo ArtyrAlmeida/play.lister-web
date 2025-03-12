@@ -62,7 +62,7 @@ const UserEdit: React.FC = () => {
 	});
 
 	const toggleImageEdit = () => {
-		if(formik.values.newUserImageLink && formik.errors.newUserImageLink){
+		if(isEditingImage && formik.values.newUserImageLink && formik.errors.newUserImageLink){
 			alert(formik.errors.newUserImageLink);
 			return;
 		}
@@ -84,7 +84,7 @@ const UserEdit: React.FC = () => {
 	}
 
 	return (
-		<form onSubmit={formik.handleSubmit} className={styles.container}>
+		<form onSubmit={formik.handleSubmit} className={`${styles.container} ${styles.background}`}>
 			<div className={styles.profile}>
 				<ProfilePictureDisplay className={styles.profileImage} profilePicture={userImage} />
 				<div className={`${styles.slideOut} ${isEditingImage ? styles.active : ''}`}>
