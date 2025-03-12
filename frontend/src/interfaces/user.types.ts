@@ -3,7 +3,7 @@ interface FindUserResponse{
     email: string;
     id: string;
     image: string;
-		genres: string[];
+		favoriteGenres: string[];
 }
 
 export type { FindUserResponse }

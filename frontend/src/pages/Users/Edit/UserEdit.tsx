@@ -12,8 +12,11 @@ import { useFormik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import EditableList from '../../../components/EditableList/EditableList';
 import userEditSchema, { UserEditFormTypeSchema } from './schemas/edituser.schema';
+import { updateUser, UpdateUserData } from '../../../api/user/update';
+import { useNavigate } from 'react-router-dom';
 
 const UserEdit: React.FC = () => {
+	const navigate = useNavigate();
 	const user: AuthResponse = useAuthUser<AuthResponse>() || { id: "", email: "", name: "", image: "", token: "" };
 	const userId = user.id;
 
@@ -29,10 +32,11 @@ const UserEdit: React.FC = () => {
 	})
 	useEffect(() => {
 		if (results[0].isSuccess) {
-			formik.setFieldValue('username', results[0].data.name ? results[0].data.name : "Username");
+			formik.setFieldValue('username', results[0].data ? results[0].data.name : "");
 			formik.setFieldValue('newUserImageLink', results[0].data.image ? results[0].data.image : "");
 			setUserImage(results[0].data.image ? results[0].data.image : "");
-			setGenres(results[0].data.genres ? results[0].data.genres : []);
+			setGenres(results[0].data.favoriteGenres ? results[0].data.favoriteGenres : []);
+			formik.validateForm();
 		}
 	}
 		, [results[0].data]);
@@ -45,8 +49,12 @@ const UserEdit: React.FC = () => {
 		validate: withZodSchema(userEditSchema),
 		onSubmit: async (values) => {
 			try {
-				await updateUser(userId, { name: values.username, image: values.newUserImageLink || userImage, genres });
-				alert('Perfil atualizado com sucesso!');
+				const data : UpdateUserData = { 
+					name: values.username, 
+					image: values.newUserImageLink || userImage, 
+					favoriteGenres: genres }
+				await sendUpdateUser(userId, data);
+				navigate('/profile');
 			} catch (error) {
 				alert('Erro ao atualizar o perfil.' + error);
 			}
@@ -68,7 +76,7 @@ const UserEdit: React.FC = () => {
 	}
 
 	const toggleUsernameEdit = () =>{
-		if(formik.errors.username) {
+		if(isEditingUsername && formik.errors.username) {
 			alert(formik.errors.username);
 			return;
 		}
@@ -117,7 +125,7 @@ const UserEdit: React.FC = () => {
 						<EditIcon htmlColor='black' />
 					</IconButton>
 				</div>
-				{formik.errors.username ? <p className={styles.error}>{formik.errors.username}</p> : null}
+				{isEditingUsername && formik.errors.username ? <p className={styles.error}>{formik.errors.username}</p> : null}
 			</div>
 			<div className={styles.favoriteGenres}>
 				<h2>Gêneros favoritos:</h2>
@@ -128,9 +136,9 @@ const UserEdit: React.FC = () => {
 	)
 }
 
-async function updateUser(id: string, data: { name: string, image: string, genres: string[] }) {
-	// Implement the API call to update the user profile
+async function sendUpdateUser(id: string, data: UpdateUserData) {
 	console.log('Updating user:', id, data);
+	updateUser(id, data);
 }
 
 export default UserEdit;
