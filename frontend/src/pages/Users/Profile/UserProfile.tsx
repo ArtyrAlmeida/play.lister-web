@@ -45,7 +45,7 @@ const UserProfile: React.FC = () => {
 			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
 			setPosts(playlists.map(playlist => ({
 				title: playlist.name, 
-				body: playlist.songs.join(", "), 
+				body: "", 
 				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt.split('/').reverse().join('-')) : playlist.createdAt, 
 				thumbnail: playlist.image
 			})));
