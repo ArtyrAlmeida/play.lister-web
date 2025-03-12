@@ -10,7 +10,6 @@
     flex-direction: column;
     align-items: center;
     gap: 30rem;
-    overflow-x: hidden;
 }
 
 .map-container {
@@ -99,6 +98,8 @@
     width: 36vw;
     max-width: 800px;
     height: 600px;
+    object-fit:cover;
+    object-position:center;
 }
 
 
@@ -143,7 +144,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0rem;
-        overflow-x: hidden;
+
     }
 }
 
@@ -195,7 +196,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0rem;
-        overflow-x: hidden;
+
     }
 }
 
@@ -246,6 +247,6 @@
         flex-direction: column;
         align-items: center;
         gap: 0rem;
-        overflow-x: hidden;
+
     }
 }
