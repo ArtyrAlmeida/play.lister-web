@@ -50,4 +50,9 @@ export default class UserService {
     signToken = async (id: string) => {
         return jwt.sign({id}, process.env.SECRET as string, {expiresIn: '3d'})
     }
+
+    update = async (id: string, data: UserInterface) => {
+        console.log("will update user", id, data);
+        return await this.repository.updateFields(id, data);
+    }
 }

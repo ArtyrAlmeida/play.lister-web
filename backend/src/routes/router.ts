@@ -17,6 +17,7 @@ const userController = new UserController();
 userRouter.post('/login', userController.login);
 userRouter.post('/register', userController.register);
 userRouter.get('/:id', userController.find);
+userRouter.put('/update/:id', userController.update);
 /* userRouter.get('/analytics/:id', userController.analytics) */
 
 const playlistRouter = Router();

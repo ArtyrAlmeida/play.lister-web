@@ -24,13 +24,19 @@ export default class UserRepository {
     }
 
     async findById(id: string) {
-        const result = await User.findById(id, { email: 1, name: 1, image: 1 });
+        const result = await User.findById(id, { email: 1, name: 1, image: 1, favoriteGenres: 1 });
 
         return result;
     }
 
     async updateOne(userId: string, query: object) {
         const result = await User.findByIdAndUpdate(userId, { $set: query });
+        
+        return result;
+    }
+
+    async updateFields(userId: string, fieldsToUpdate: Partial<UserInterface>) {
+        const result = await User.findByIdAndUpdate(userId, { $set: fieldsToUpdate }, { new: true });
         
         return result;
     }

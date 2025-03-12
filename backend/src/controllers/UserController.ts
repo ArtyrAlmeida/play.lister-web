@@ -38,4 +38,16 @@ export class UserController {
             res.status(requestError.code || 400).json({ error: requestError.message });
         }
     };
+
+    update = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const data = req.body;
+        try {
+            const response = await this.service.update(id, data);
+            res.status(200).json(response);
+        } catch (error) {
+            const requestError = error as RequestError;
+            res.status(requestError.code || 400).json({ error: requestError.message });
+        }
+    };
 }
