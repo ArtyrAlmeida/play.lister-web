@@ -4,7 +4,7 @@ import DefaultButton from "../../../components/DefaultButton/DefaultButton";
 import { useEffect, useState } from 'react';
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../../interfaces/auth.types";
-import { useQueries } from "@tanstack/react-query";
+import { useMutation, useQueries } from "@tanstack/react-query";
 import { findUser } from "../../../api/user";
 import { TextField, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,6 +14,7 @@ import EditableList from '../../../components/EditableList/EditableList';
 import userEditSchema, { UserEditFormTypeSchema } from './schemas/edituser.schema';
 import { updateUser, UpdateUserData } from '../../../api/user/update';
 import { useNavigate } from 'react-router-dom';
+import { queryClient } from '../../../utils/queryClient';
 
 const UserEdit: React.FC = () => {
 	const navigate = useNavigate();
@@ -41,6 +42,17 @@ const UserEdit: React.FC = () => {
 	}
 		, [results[0].data]);
 
+		const { mutate: updateUserMutation } = useMutation({
+			mutationFn: async (data: UpdateUserData) => {
+				await updateUser(userId, data);
+			},
+			onSuccess: async () => {
+				await queryClient.invalidateQueries({queryKey : ['user', userId, 'genres']});
+				navigate('/profile');
+			}
+		});
+
+
 	const formik = useFormik<UserEditFormTypeSchema>({
 		initialValues: {
 			username: '',
@@ -53,8 +65,7 @@ const UserEdit: React.FC = () => {
 					name: values.username, 
 					image: values.newUserImageLink || userImage, 
 					favoriteGenres: genres }
-				await sendUpdateUser(userId, data);
-				navigate('/profile');
+				updateUserMutation(data);
 			} catch (error) {
 				alert('Erro ao atualizar o perfil.' + error);
 			}
@@ -134,11 +145,6 @@ const UserEdit: React.FC = () => {
 			<DefaultButton className={styles.saveButton} type='submit' text='Salvar' />
 		</form>
 	)
-}
-
-async function sendUpdateUser(id: string, data: UpdateUserData) {
-	console.log('Updating user:', id, data);
-	updateUser(id, data);
 }
 
 export default UserEdit;
