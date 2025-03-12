@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import PlaylistDetailsHeader from "../../components/PlaylistDetailsHeader/PlaylistDetailsHeader";
 import SongItem from "../../components/SongItem/SongItem";
 
+import styles from "./PlaylistDetails.module.scss";
+
 const PlaylistDetails: React.FC = () => {
     const params = useParams();
     const playlistId = params.id as string;
@@ -20,9 +22,9 @@ const PlaylistDetails: React.FC = () => {
     if (error || (!isLoading && !data)) return <h1>Error</h1>
 
     if (data) {
-        return <div>
+        return <div id={styles.background}>
             <PlaylistDetailsHeader playlist={data} />
-            <div>
+            <div className={styles.list}>
                 { data.songs && data.songs.map(song => <SongItem key={song} songId={song} isForm={false} />) }
             </div>
         </div>
