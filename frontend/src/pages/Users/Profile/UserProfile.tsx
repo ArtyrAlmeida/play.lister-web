@@ -76,7 +76,7 @@ const UserProfile: React.FC = () => {
 					</div>
 					{ userId === user.id && 
 						<div className={styles.buttons}>
-							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} />
+							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} onClick={() => navigate('/analytics')} />
 							<DefaultButton 
 								className={styles.editButton}  
 								text="Editar perfil" 
