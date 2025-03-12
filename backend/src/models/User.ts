@@ -26,7 +26,8 @@ const userSchema = new Schema<UserInterface>({
     },
     favoriteGenres: {
         type: [String],
-        required: false
+        required: false,
+        default: []
     },
 });
 

@@ -1,0 +1,81 @@
+@use "../../../global/core";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 3rem;
+	gap: 2rem;
+
+	@media (max-width: 768px) {
+		padding: 2rem;
+	}
+}
+
+.error{
+	color: red;
+	margin: 0;
+	font-size: 1em;
+	font-weight: 700;
+	align-self: flex-start;
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2rem;
+	gap: 1rem;
+
+	input {
+		color: white;
+		font-family: core.$default-font;
+		font-size: 1.5em;
+		background-color: core.$secondary-color;
+		border-radius: 0.5rem;
+	}
+}
+
+.editImageButton {
+	font-size: 1.5em;
+}
+
+.usernameContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+
+	p {
+		font-size: 1.5em;
+		font-weight: 700;
+		font-family: core.$default-font;
+	}
+}
+
+.favoriteGenres {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	font-family: core.$default-font;
+
+	h2 {
+		font-size: 2em;
+	}
+	
+}
+
+.saveButton {
+	font-size: 1.5em;
+}
+
+.slideOut {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease-out;
+}
+
+.slideOut.active {
+	max-height: 10rem;
+}

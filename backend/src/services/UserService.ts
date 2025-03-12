@@ -54,6 +54,10 @@ export default class UserService {
         return jwt.sign({id}, process.env.SECRET as string, {expiresIn: '3d'})
     }
 
+    update = async (id: string, data: UserInterface) => {
+        return await this.repository.updateFields(id, data);
+    }
+  
     analytics = async (id: string) => {
         const playlistRepository = new PlaylistRepository();
         const songRepository = new SongRepository();
