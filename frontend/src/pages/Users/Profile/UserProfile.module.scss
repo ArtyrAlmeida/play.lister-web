@@ -11,6 +11,14 @@
     }
 }
 
+.background {
+    background-image: url('../../../assets/images/PlaylistBG.svg');
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: bottom;
+    min-height: 100vh;
+}
+
 .profile {
     display: flex;
     flex-direction: row;
