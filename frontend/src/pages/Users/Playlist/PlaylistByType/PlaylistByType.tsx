@@ -58,7 +58,12 @@ function PlaylistsByType() {
                     )
                 })
             }
-                </Grid2>
+            </Grid2>
+        </div>
+    } else {
+        content = 
+        <div id={styles['no-content-wrapper']}>
+            <NoContent icon={<Warning/>} message={"Você não possui playlists desse tipo"} />
         </div>
     }
 

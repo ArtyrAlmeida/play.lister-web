@@ -79,3 +79,11 @@
 .slideOut.active {
 	max-height: 10rem;
 }
+
+.background {
+	background-image: url('../../../assets/images/PlaylistBG.svg');
+	background-size: cover;
+	background-repeat: repeat-y;
+	background-position: bottom;
+	min-height: 100vh;
+}

@@ -14,7 +14,7 @@
     align-items: center;
     min-height: 7rem;
     width: 100%;
-    max-width: 35rem;
+    max-width: 30rem;
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -23,7 +23,7 @@
     }
 
     img {
-        height: 80%;
+        width: 25%;
 
         @media (max-width: 768px) {
             width: 100%;

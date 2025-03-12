@@ -42,7 +42,7 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/user/")}>
+          <ListItemButton onClick={() => navigate("/profile/")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
