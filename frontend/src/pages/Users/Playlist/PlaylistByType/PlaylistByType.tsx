@@ -53,7 +53,7 @@ function PlaylistsByType() {
                 data.map((playlist, index) => {
                     return (
                         <Grid2 key={`${playlist.name}_${index}`}  display="flex" justifyContent="center" alignItems="center" size={itemSize}>
-                            <PlaylistItem createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
+                            <PlaylistItem id={playlist._id!} createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
                         </Grid2>
                     )
                 })

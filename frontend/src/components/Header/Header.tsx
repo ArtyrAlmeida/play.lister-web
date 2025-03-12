@@ -44,11 +44,17 @@ const Header = () => {
     setOpen(newOpen);
   };
 
+  
+  const handleNavigate = (route: string) => () => {
+    navigate(route);
+    navigate(0);
+  }
+
   const DrawerList = (
     <Box onClick={toggleDrawer(false)}>
       <List>
       <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/")}>
+          <ListItemButton onClick={handleNavigate("/")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -56,7 +62,7 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/profile/")}>
+          <ListItemButton onClick={handleNavigate("/profile/")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -64,7 +70,7 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/playlist/create")}>
+          <ListItemButton onClick={handleNavigate("/playlist/create")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -73,7 +79,7 @@ const Header = () => {
         </ListItem>
         <Divider />
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/about")}>
+          <ListItemButton onClick={handleNavigate("/about")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
