@@ -33,6 +33,14 @@ const Header = () => {
   const DrawerList = (
     <Box onClick={toggleDrawer(false)}>
       <List>
+      <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate("/")}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Início"} />
+          </ListItemButton>
+        </ListItem>
         <ListItem disablePadding>
           <ListItemButton onClick={() => navigate("/user/")}>
             <ListItemIcon>
@@ -50,6 +58,14 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <Divider />
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate("/about")}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Sobre Nós"} />
+          </ListItemButton>
+        </ListItem>
         <ListItem disablePadding>
           <ListItemButton onClick={handleLogout}>
             <ListItemIcon>

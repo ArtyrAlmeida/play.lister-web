@@ -12,6 +12,11 @@ app.get('/', (req: Request, res: Response) => {
     res.json('Running');
 });
 
+app.use((req, res, next) => {
+    console.log(req.method + ": " + req.path);
+    next()
+})
+
 app.use('/songs', songsRouter);
 app.use('/user', userRouter);
 app.use('/playlist', playlistRouter);

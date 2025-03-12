@@ -1,4 +1,5 @@
 import { connect } from 'mongoose';
+import { populateSongs } from './populateSongs';
 
 const { MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_PORT, MONGO_NAME } = process.env;
 
@@ -8,7 +9,10 @@ console.log(connectionUri);
 
 const connectMongo = async () => {
     connect(connectionUri)
-        .then(() => console.log('Connected to mongo'))
+        .then(async () => {
+            console.log('Connected to mongo');
+            await populateSongs()
+        })
         .catch((err) => console.error('Could not connect: ', err));;
 };
 

@@ -28,7 +28,7 @@ playlistRouter.get('/', playlistController.find);
 playlistRouter.get('/:id', playlistController.findOne);
 playlistRouter.get('/songs/:id', playlistController.findSongs);
 playlistRouter.get('/user/:id', playlistController.findByUser);
-playlistRouter.get('/user/:id/liked', playlistController.find);
+playlistRouter.get('/user/:id/liked', playlistController.findUserLiked);
 playlistRouter.post('/', playlistController.create);
 playlistRouter.put('/:id', playlistController.updateOne)
 playlistRouter.delete('/:id', playlistController.deleteOne);

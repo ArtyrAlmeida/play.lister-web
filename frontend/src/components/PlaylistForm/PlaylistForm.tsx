@@ -1,4 +1,4 @@
-import { ArrowCircleLeftOutlined } from "@mui/icons-material";
+import { ArrowCircleLeftOutlined, Close } from "@mui/icons-material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SongItem from "../../components/SongItem/SongItem";
@@ -14,6 +14,7 @@ import { createOrEditPlaylist } from "../../api/playlists/createOrEditPlaylist";
 
 import styles from "./PlaylistForm.module.scss";
 import DefaultImage from "../../assets/images/UploadImage.svg"
+import NoContent from "../NoContent/NoContent";
 
 type CreatePlaylistProps = {
     mode: "edit"
@@ -29,7 +30,7 @@ type CreatePlaylistProps = {
 }
 
 const PlaylistForm: React.FC<CreatePlaylistProps> = (props) => {
-    const [songs, setSongs] = useState<string[]>(props.mode == "edit" ? props.initialValues.songs : ["67c755634727324631144667", "67c75579472732463114466a"]);
+    const [songs, setSongs] = useState<string[]>(props.mode == "edit" ? props.initialValues.songs : []);
     const [isModalActive, setIsModalActive] = useState<boolean>(false);
     const [imageSrc, setImageSrc] = useState<string>(props.mode == "edit" ? props.initialValues.image : DefaultImage);
     const navigate = useNavigate()
@@ -109,7 +110,8 @@ const PlaylistForm: React.FC<CreatePlaylistProps> = (props) => {
                         <TextField className={styles['form-camp']} id="image" helperText={(formik.values.image && formik.errors.image) ? '' : 'Por favor, insira a url da imagem da playlist'} color={formik.errors.image ? "error" : "primary"} name="image" required variant="outlined" type="text" onChange={handleImageChange} value={formik.values.image} />
                     </div>
                     <div className={styles["songs-list"]}>
-                        {songs.length && songs.map(song => <SongItem key={song} isForm={true} songId={song} onDeletion={handleSongDeletion} />)}
+                        { songs.length < 1 && <NoContent icon={<Close />} message="Nenhuma música foi adicionada"  /> }
+                        {(songs.length > 0) && songs.map(song => <SongItem key={song} isForm={true} songId={song} onDeletion={handleSongDeletion} />)}
                         <button className={styles["bold-button"]} onClick={() => setIsModalActive(true)}>Adicionar Música</button>
                     </div>
                 </div>
