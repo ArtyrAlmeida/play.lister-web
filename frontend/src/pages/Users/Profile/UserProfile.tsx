@@ -44,6 +44,7 @@ const UserProfile: React.FC = () => {
 		if(createdPlaylistsQuery.isSuccess) {
 			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
 			setPosts(playlists.map(playlist => ({
+				_id: playlist._id,
 				title: playlist.name, 
 				body: playlist.songs.join(", "), 
 				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt.split('/').reverse().join('-')) : playlist.createdAt, 
@@ -81,7 +82,9 @@ const UserProfile: React.FC = () => {
 
 					<div className={styles.postsContainer}>
 						{posts.map((post, index) => (
-							<Post key={index} {...post} />
+							<div key={index} onClick={() => navigate(`/playlist/${post._id}`)} style={{ cursor: 'pointer' }}>
+								<Post {...post} />
+							</div>
 						))}
 					</div>
 						
