@@ -57,7 +57,7 @@ export default class PlaylistRepository {
 
     async findUserLiked(id: string) {
         const likes = (await Like.find({ userId: id})).map((like) => like.playlistId)
-        const likedPlaylists = await Playlist.find({ $in: likes })
+        const likedPlaylists = await Playlist.find({ _id: likes })
 
         return likedPlaylists
     }

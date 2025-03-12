@@ -1,6 +1,7 @@
 import styles from "./Post.module.scss";
 
 export interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
+	_id?: string;
 	title: string;
 	body: string;
 	date?: Date;

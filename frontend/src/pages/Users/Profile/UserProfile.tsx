@@ -43,12 +43,22 @@ const UserProfile: React.FC = () => {
 
 		if(createdPlaylistsQuery.isSuccess) {
 			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
-			setPosts(playlists.map(playlist => ({
+			const postPlaylists : PostProps[] = playlists.map(playlist => ({
+				_id: playlist._id,
 				title: playlist.name, 
 				body: "", 
 				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt.split('/').reverse().join('-')) : playlist.createdAt, 
 				thumbnail: playlist.image
-			})));
+			}));
+
+			const sortedPosts = postPlaylists.sort((a, b) => {
+				if (a.date && b.date) {
+					return a.date.getTime() - b.date.getTime();
+				}
+				return 0;
+			}).reverse();
+
+			setPosts(sortedPosts);
 		}
 	}
 	, [userInfoQuery.isSuccess, createdPlaylistsQuery.isSuccess]);
@@ -66,7 +76,7 @@ const UserProfile: React.FC = () => {
 					</div>
 					{ userId === user.id && 
 						<div className={styles.buttons}>
-							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} />
+							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} onClick={() => navigate('/analytics')} />
 							<DefaultButton 
 								className={styles.editButton}  
 								text="Editar perfil" 
@@ -81,7 +91,9 @@ const UserProfile: React.FC = () => {
 
 					<div className={styles.postsContainer}>
 						{posts.map((post, index) => (
-							<Post key={index} {...post} />
+							<div key={index} onClick={() => navigate(`/playlist/${post._id}`)} style={{ cursor: 'pointer' }}>
+								<Post {...post} />
+							</div>
 						))}
 					</div>
 						

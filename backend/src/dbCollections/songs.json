@@ -1,0 +1,88 @@
+[{
+    "name": "Come Together",
+    "length": "05:00",
+    "author": "The Beatles",
+    "image": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg",
+    "__v": 0,
+    "genre": "Rock"
+  },
+  {
+    "name": "Something",
+    "length": "05:00",
+    "author": "The Beatles",
+    "image": "https://cdn11.bigcommerce.com/s-oep27gfop7/images/stencil/1280x1280/products/4505/80349/602577915123a__46716.1722786447.jpg?c=1",
+    "__v": 0,
+    "genre": "Rock"
+  },
+  {
+    "name": "Julia",
+    "length": "05:00",
+    "author": "The Beatles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/20/TheBeatles68LP.jpg",
+    "__v": 0,
+    "genre": "Rock"
+  },
+  {
+    "name": "Enter Sandman",
+    "length": "05:00",
+    "author": "Metallica",
+    "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg",
+    "__v": 0,
+    "genre": "Metal"
+  },
+  {
+    "name": "Master of Puppets",
+    "length": "05:00",
+    "author": "Metallica",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/4/4d/Master_of_Puppets.jpg",
+    "__v": 0,
+    "genre": "Metal"
+  },
+  {
+    "name": "Bangarang",
+    "length": "05:00",
+    "author": "Skrillex",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/c/cc/Skrillex_-_Bangarang.jpg",
+    "__v": 0,
+    "genre": "EDM"
+  },
+  {
+    "name": "That's What I Like",
+    "length": "05:00",
+    "author": "Bruno Mars",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/1/19/Bruno_Mars-24K_Magic.jpg",
+    "genre": "Pop",
+    "__v": 0
+  },
+  {
+    "name": "24K Magic",
+    "length": "05:00",
+    "author": "Bruno Mars",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/1/19/Bruno_Mars-24K_Magic.jpg",
+    "genre": "Pop",
+    "__v": 0
+  },
+  {
+    "name": "Even Flow",
+    "length": "05:00",
+    "author": "Pearl Jam",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/d/da/Pearl_Jam_-_Ten.jpg",
+    "genre": "Rock",
+    "__v": 0
+  },
+  {
+    "name": "Black",
+    "length": "05:00",
+    "author": "Pearl Jam",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/d/da/Pearl_Jam_-_Ten.jpg",
+    "__v": 0,
+    "genre": "Rock"
+  },
+  {
+    "name": "Alive",
+    "length": "05:00",
+    "author": "Pearl Jam",
+    "image": "https://upload.wikimedia.org/wikipedia/pt/d/da/Pearl_Jam_-_Ten.jpg",
+    "__v": 0,
+    "genre": "Rock"
+}]

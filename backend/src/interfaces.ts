@@ -4,6 +4,7 @@ interface SongInterface {
     length: string,
     author: string,
     image: string,
+    genre: string,
 }
 
 interface PlaylistInterface {

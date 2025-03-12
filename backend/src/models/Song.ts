@@ -19,6 +19,10 @@ const songSchema = new Schema<SongInterface>({
     image: {
         type: String,
         required: true,
+    },
+    genre : {
+        type: String,
+        required: true
     }
 });
 

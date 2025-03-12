@@ -6,6 +6,7 @@ import { getUserPlaylists } from "../../../api/playlists/getUserPlaylists";
 import { getLikedPlaylists } from "../../../api/playlists/getLikedPlaylists";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../../interfaces/auth.types";
+import { NavLink } from "react-router-dom";
 
 function UsersPlaylist() {    
     const { id: userId } = useAuthUser<AuthResponse>()!
@@ -24,7 +25,7 @@ function UsersPlaylist() {
 
     return ( 
         <div id={styles['your-playlists-wrapper']}>
-            <h1 id={styles['page-tittle']}><ArrowCircleLeftOutlined/> Suas Playlists</h1>
+            <NavLink to={'/'} id={styles['page-tittle']}><h1><ArrowCircleLeftOutlined/> Suas Playlists</h1></NavLink>
             <PlaylistList playlistRouting="created" listTittle="Playlists Públicas" playlists={createdPlaylists} />
             <PlaylistList playlistRouting="liked" listTittle="Playlists Curtidas" playlists={likedPlaylists} />
         </div>

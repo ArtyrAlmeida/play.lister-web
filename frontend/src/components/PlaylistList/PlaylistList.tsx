@@ -42,7 +42,7 @@ function PlaylistList({ playlists, listTittle, playlistRouting }: PlaylistListPr
                 <Grid2 container spacing={1} columns={{ xs: (itemSize * 2), sm: (itemSize * 3), md: (itemSize * 4), lg: (itemSize * 5) }}>
                     {playlistItems.map((playlist) => (
                         <Grid2 key={playlist.name} display="flex" justifyContent="center" alignItems="center" size={itemSize}>
-                            <PlaylistItem createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
+                            <PlaylistItem id={playlist._id || ""} createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
                         </Grid2>
                     ))}
                 </Grid2>
