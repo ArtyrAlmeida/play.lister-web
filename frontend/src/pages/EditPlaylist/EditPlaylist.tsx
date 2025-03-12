@@ -6,6 +6,9 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../interfaces/auth.types";
 
 import styles from "./EditPlaylist.module.scss";
+import Loading from "../../components/Loading/Loading";
+import NoContent from "../../components/NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 const EditPlaylist: React.FC = () => {
     const params = useParams();
@@ -26,13 +29,8 @@ const EditPlaylist: React.FC = () => {
         return <div><h1>Essa playlist não é sua</h1></div>
     }
 
-    if (isLoading) {
-        <h2>Loanding</h2>
-    }
-
-    if (error) {
-        <h2>Erro</h2>
-    }
+    if (isLoading) return <div><Loading message="Carregando Playlist"/></div>
+    if (error || (!isLoading && !data)) return <NoContent icon={<Close />} message="Erro ao obter playlist para edição"  />
 
     return <div id={styles.background}>
         { 

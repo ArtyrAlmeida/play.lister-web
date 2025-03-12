@@ -51,7 +51,7 @@ export default class UserService {
     };
 
     signToken = async (id: string) => {
-        return jwt.sign({id}, "9b9bed51-fddd-424f-8f4a-fcc77593604f", {expiresIn: '3d'})
+        return jwt.sign({id}, process.env.SECRET as string, {expiresIn: '3d'})
     }
 
     analytics = async (id: string) => {

@@ -4,6 +4,9 @@ import { getSong } from "../../api/songs/getSong";
 import styles from "./SongItem.module.scss";
 
 import Trash from "../../assets/images/Trash.svg"
+import Loading from "../Loading/Loading";
+import NoContent from "../NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 type SongItemProps = {
     songId: string,
@@ -24,8 +27,8 @@ const SongItem: React.FC<SongItemProps> = (props) => {
         }
     });
 
-    if (isLoading) return <h1>Loading</h1>
-    if (error || (!isLoading && !data)) return <h1>Error</h1>
+    if (isLoading) return <Loading message="Carregando playlist"/>
+    if (error || (!isLoading && !data)) return <NoContent icon={<Close />} message="Erro ao obter música"  />
 
     if (data) {
         return <div className={styles["song"]}>

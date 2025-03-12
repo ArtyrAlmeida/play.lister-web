@@ -10,6 +10,9 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../interfaces/auth.types";
 
 import styles from "./PlaylistDetailsButton.module.scss";
+import Loading from "../Loading/Loading";
+import NoContent from "../NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 interface PlaylistDetailsButtonProps {
     playlist: Playlist
@@ -46,9 +49,8 @@ const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist 
         </button> 
     )
 
-    if (isLoading) return <h3>Loading</h3>
-    
-    if (isError) return <h3>Erro</h3>
+    if (isLoading) return <div><Loading message="Carregando Analytics"/></div>
+    if (isError) return <NoContent icon={<Close />} message="Erro ao obter métricas"  />
 
     return (
         <button className={`${styles.button} ${isLiked ? styles.liked : ""}`} onClick={() => toggleLike()}>

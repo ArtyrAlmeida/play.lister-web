@@ -5,6 +5,9 @@ import PlaylistDetailsHeader from "../../components/PlaylistDetailsHeader/Playli
 import SongItem from "../../components/SongItem/SongItem";
 
 import styles from "./PlaylistDetails.module.scss";
+import Loading from "../../components/Loading/Loading";
+import NoContent from "../../components/NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 const PlaylistDetails: React.FC = () => {
     const params = useParams();
@@ -18,8 +21,8 @@ const PlaylistDetails: React.FC = () => {
         }
     });
 
-    if (isLoading) return <h1>Loading</h1>
-    if (error || (!isLoading && !data)) return <h1>Error</h1>
+    if (isLoading) return <div><Loading message="Carregando Analytics"/></div>
+    if (error || (!isLoading && !data)) return <NoContent icon={<Close />} message="Erro ao obter métricas"  />
 
     if (data) {
         return <div id={styles.background}>
