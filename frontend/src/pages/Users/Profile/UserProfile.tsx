@@ -43,13 +43,22 @@ const UserProfile: React.FC = () => {
 
 		if(createdPlaylistsQuery.isSuccess) {
 			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
-			setPosts(playlists.map(playlist => ({
+			const postPlaylists : PostProps[] = playlists.map(playlist => ({
 				_id: playlist._id,
 				title: playlist.name, 
 				body: playlist.songs.join(", "), 
 				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt.split('/').reverse().join('-')) : playlist.createdAt, 
 				thumbnail: playlist.image
-			})));
+			}));
+
+			const sortedPosts = postPlaylists.sort((a, b) => {
+				if (a.date && b.date) {
+					return a.date.getTime() - b.date.getTime();
+				}
+				return 0;
+			}).reverse();
+
+			setPosts(sortedPosts);
 		}
 	}
 	, [userInfoQuery.isSuccess, createdPlaylistsQuery.isSuccess]);
