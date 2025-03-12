@@ -40,4 +40,10 @@ export default class UserRepository {
         
         return result;
     }
+  
+    async findByArray(ids: string[]) {
+            const result = await User.find({ _id: { $in: ids } });
+    
+            return result;
+        }
 }

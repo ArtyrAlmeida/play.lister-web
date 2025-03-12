@@ -1,0 +1,25 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    background: none;
+    position: fixed;
+}
+
+.user {
+    cursor: pointer;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    p {
+        font-size: 1.3em;
+        color: #32A851;
+    }
+    img {
+        width: 4em;
+        height: 4em;
+        border-radius: 50px;
+    }
+}
+

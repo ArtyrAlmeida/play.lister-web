@@ -1,0 +1,40 @@
+#background {
+    background-image: url('../../assets/images/PlaylistBG.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    flex-direction: column;
+    padding: 4em 15em;
+    gap: 64px;
+}
+
+.list {
+    padding: 0 5em;
+}
+
+@media screen and (max-width: 1200px) {
+    #background {
+        padding: 1em 4em ;
+    }
+
+    .list {
+        padding: 0 3em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #background {
+        padding: 1em 2em ;
+    }
+
+    .list {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #background {
+        padding: 1em 1em ;
+    }
+}

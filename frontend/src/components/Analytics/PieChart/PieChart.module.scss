@@ -1,0 +1,9 @@
+.pie {
+    width: 300px;
+}
+
+@media screen and (max-width: 1050px) {
+    .pie {
+        width: 250px;
+    }
+}

@@ -8,16 +8,18 @@ interface PlaylistDetailsHeaderProps {
 }
 
 const PlaylistDetailsHeader: React.FC<PlaylistDetailsHeaderProps> = ({ playlist }) => {
-    return <div>
+    return <div className={styles["playlist-header"]}>
         <img className={styles["playlist-image"]} src={playlist.image} alt={`Imagem da playlist ${playlist.name}`} />
-        <div>
-            <h3>{playlist.name}</h3>
-            <p>Detalhes da playlist</p>
+        <div className={styles["playlist-info"]}>
+            <div className={styles.top}>
+                <h3>{playlist.name}</h3>
+                <p>Detalhes da playlist</p>
+            </div>
+            <div className={styles.bottom}>
+                <p>Criado por {playlist.authorName}</p>
+                <PlaylistDetailsButton playlist={playlist} />
+            </div> 
         </div>
-        <div>
-            <p>Criado por {playlist.authorName}</p>
-            <PlaylistDetailsButton playlist={playlist} />
-        </div> 
     </div>
 }
 

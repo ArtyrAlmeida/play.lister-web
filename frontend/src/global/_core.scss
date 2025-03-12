@@ -1,8 +1,57 @@
 $primary-color : #32A851;
 $secondary-color : #227037;
 
-$default-font: 'Anton', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+$default-font: 'Roboto', sans-serif;
+
+#root {
+	text-align: center;
+	width: 100vw;
+	height: 100vh;
+  }
+
+:root {
+	line-height: 1.5;
+	font-weight: 400;
+  
+	color: rgba(255, 255, 255, 0.87);
+  }
 
 * {
+	font-family: $default-font;
 	box-sizing: border-box;
 }
+
+html {
+	background-color: #131112;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+  }
+
+  /* width */
+::-webkit-scrollbar {
+	width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: #227037;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: #555;
+  }

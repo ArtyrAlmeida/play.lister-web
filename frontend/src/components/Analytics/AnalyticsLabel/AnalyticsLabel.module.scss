@@ -1,0 +1,20 @@
+.metric-label {
+    margin-top: -5em;
+    font-size: 1.5rem;
+     h3 {
+        width: 15em;
+        position: relative;
+        text-align: start;
+        top: 6.5em;
+        color: #D3D3D3;
+    }
+    img {
+        width: 13em;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .metric-label {
+        font-size: 1rem;
+    }
+}
