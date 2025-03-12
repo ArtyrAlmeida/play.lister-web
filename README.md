@@ -53,5 +53,9 @@ You will then see that the server has opened a web at: `http://localhost:5173`
 
 # Contributors
 
-[Artur Almeida](https://www.genome.gov/)
-[Immanuel Victor](https://www.genome.gov/)
+[André Lucas](https://github.com/Andre-lucs)
+
+[Artur Almeida](https://github.com/ArtyrAlmeida)
+
+[Immanuel Victor](https://github.com/Immanuel-Victor)
+
