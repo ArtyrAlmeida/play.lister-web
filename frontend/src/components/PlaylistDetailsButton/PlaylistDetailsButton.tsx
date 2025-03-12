@@ -1,18 +1,28 @@
 import { useState } from "react";
 import { Playlist } from "../../interfaces/playlist.types"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toggleLikeRequest } from "../../api/likes/toggleLike";
 
 import Cancel from '../../assets/images/Cancel.svg';
 import Heart from '../../assets/images/Heart.svg';
 import Pencil from '../../assets/images/Pencil.svg';
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { AuthResponse } from "../../interfaces/auth.types";
+
+import styles from "./PlaylistDetailsButton.module.scss";
+import Loading from "../Loading/Loading";
+import NoContent from "../NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 interface PlaylistDetailsButtonProps {
     playlist: Playlist
 }
 
 const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist }) => {
-    const userId = "67c7516772cabf569761e217";
+    const user = useAuthUser<AuthResponse>();
+    const userId = user!.id
+
+    const navigate = useNavigate()
 
     const [isLiked, setIsLiked] = useState<boolean>(playlist.usersLiked.includes(userId));
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,21 +42,18 @@ const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist 
         }
     }
     
-    if (playlist.author != userId) return (
-        <Link to="/edit">
-            <button>
-                <p>Editar playlist</p>
-                <img src={ Pencil } alt="Botão para editar a playlist" />
-            </button>
-        </Link>
+    if (playlist.author == userId) return (
+        <button onClick={() => navigate(`/playlist/edit/${playlist._id}`)} className={styles.button}>
+            <p>Editar playlist</p>
+            <img src={ Pencil } alt="Botão para editar a playlist" />
+        </button> 
     )
 
-    if (isLoading) return <h3>Loading</h3>
-    
-    if (isError) return <h3>Erro</h3>
+    if (isLoading) return <div><Loading message="Carregando Analytics"/></div>
+    if (isError) return <NoContent icon={<Close />} message="Erro ao obter métricas"  />
 
     return (
-        <button onClick={() => toggleLike()}>
+        <button className={`${styles.button} ${isLiked ? styles.liked : ""}`} onClick={() => toggleLike()}>
             <p>{ isLiked ? "Curtido" : "Curtir" }</p>
             <img src={ isLiked ? Cancel : Heart } alt={ isLiked ? "Botão de cancelar curtida" : "Botão de curtir" } />
         </button>

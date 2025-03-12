@@ -17,7 +17,7 @@ const userController = new UserController();
 userRouter.post('/login', userController.login);
 userRouter.post('/register', userController.register);
 userRouter.get('/:id', userController.find);
-/* userRouter.get('/analytics/:id', userController.analytics) */
+userRouter.get('/analytics/:id', userController.analytics)
 
 const playlistRouter = Router();
 const playlistController = new PlaylistController();
@@ -30,6 +30,7 @@ playlistRouter.get('/user/:id/liked', playlistController.find);
 playlistRouter.post('/', playlistController.create);
 playlistRouter.put('/:id', playlistController.updateOne)
 playlistRouter.delete('/:id', playlistController.deleteOne);
+playlistRouter.get("/month/:month", playlistController.findByMonth)
 
 const likeRouter = Router();
 const likeController = new LikeController();
