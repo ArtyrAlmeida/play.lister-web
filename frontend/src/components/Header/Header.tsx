@@ -34,7 +34,7 @@ const Header = () => {
     <Box onClick={toggleDrawer(false)}>
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/user/")}>
+          <ListItemButton onClick={() => navigate("/profile/")}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
