@@ -43,7 +43,7 @@ const PlaylistDetailsButton: React.FC<PlaylistDetailsButtonProps> = ({ playlist 
     }
     
     if (playlist.author == userId) return (
-        <button onClick={() => navigate(`/playlist/edit/${playlist._id}`)} className={styles.button}>
+        <button onClick={() => {navigate(`/playlist/edit/${playlist._id}`); navigate(0)}} className={styles.button}>
             <p>Editar playlist</p>
             <img src={ Pencil } alt="Botão para editar a playlist" />
         </button> 

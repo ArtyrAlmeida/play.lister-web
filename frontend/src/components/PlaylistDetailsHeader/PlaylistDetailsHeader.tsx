@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Playlist } from "../../interfaces/playlist.types"
 import PlaylistDetailsButton from "../PlaylistDetailsButton/PlaylistDetailsButton";
 
@@ -8,6 +9,7 @@ interface PlaylistDetailsHeaderProps {
 }
 
 const PlaylistDetailsHeader: React.FC<PlaylistDetailsHeaderProps> = ({ playlist }) => {
+    const navigate = useNavigate();
     return <div className={styles["playlist-header"]}>
         <img className={styles["playlist-image"]} src={playlist.image} alt={`Imagem da playlist ${playlist.name}`} />
         <div className={styles["playlist-info"]}>
@@ -16,7 +18,7 @@ const PlaylistDetailsHeader: React.FC<PlaylistDetailsHeaderProps> = ({ playlist 
                 <p>Detalhes da playlist</p>
             </div>
             <div className={styles.bottom}>
-                <p>Criado por {playlist.authorName}</p>
+                <p onClick={() => navigate(`/profile/${playlist.author}`)}>Criado por {playlist.authorName}</p>
                 <PlaylistDetailsButton playlist={playlist} />
             </div> 
         </div>

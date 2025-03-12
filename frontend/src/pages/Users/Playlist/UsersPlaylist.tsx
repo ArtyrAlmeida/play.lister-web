@@ -25,7 +25,7 @@ function UsersPlaylist() {
 
     return ( 
         <div id={styles['your-playlists-wrapper']}>
-            <NavLink to={'/'} id={styles['page-tittle']}><h1><ArrowCircleLeftOutlined/> Suas Playlists</h1></NavLink>
+            <NavLink to={'/profile'} id={styles['page-tittle']}><h1><ArrowCircleLeftOutlined/> Suas Playlists</h1></NavLink>
             <PlaylistList playlistRouting="created" listTittle="Playlists Públicas" playlists={createdPlaylists} />
             <PlaylistList playlistRouting="liked" listTittle="Playlists Curtidas" playlists={likedPlaylists} />
         </div>

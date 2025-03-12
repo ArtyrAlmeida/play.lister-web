@@ -3,7 +3,8 @@
     "email": "artur@gmail.com",
     "password": "123",
     "playlists": [],
-    "image": "https://imgur.com/a/eE8BRXq",
+    "image": "https://static.itdg.com.br/images/360-240/3b03a942ab534200a0a80eb324828ccb/246606-postprocess-71802381-1893-4fbe-b302-726bfca18774.jpg",
+    "favoriteGenre": ["Rock"],
     "__v": 0
   },
   {
@@ -12,6 +13,7 @@
     "password": "123",
     "playlists": [],
     "image": "https://www.minhareceita.com.br/app/uploads/2022/12/pizza-de-pepperoni-caseira-portal-minha-receita.jpg",
+    "favoriteGenre": ["Indie"],
     "__v": 0
   },
   {
@@ -20,5 +22,6 @@
     "password": "123",
     "playlists": [],
     "image": "https://static.wikia.nocookie.net/castlevania/images/3/3a/Alucard_%28animated_series%29_-_04.png/revision/latest?cb=20231003170421",
+    "favoriteGenre": ["Pop"],
     "__v": 0
   }]

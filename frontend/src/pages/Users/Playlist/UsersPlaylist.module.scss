@@ -1,11 +1,20 @@
 #your-playlists-wrapper {
     text-align: start;
+    margin-top: 5em;
 }
 
 #page-tittle {
     color: white;
     text-decoration: none;
+    display: flex;
+    width: fit-content;
+    a {
+        width: min-content;
+    }
     h1 {
+        width: fit-content;
+        
+        cursor: pointer;
         margin-top: 1rem;
         margin-left: 1.5rem;
         display: flex;

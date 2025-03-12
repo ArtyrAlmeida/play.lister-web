@@ -12,7 +12,7 @@ function PlaylistItem({ id, image, name, createdAt }: PlaylistItemProps) {
     const navigate = useNavigate();
 
     return (
-        <div onClick={() => navigate(`/playlist/${id}`)} className={styles['playlist-item']}>
+        <div onClick={() => {navigate(`/playlist/${id}`); navigate(0)}} className={styles['playlist-item']}>
             <div className={styles['playlist-image']} style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: 'cover',

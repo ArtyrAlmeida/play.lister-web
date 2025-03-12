@@ -28,8 +28,8 @@ const UserProfile: React.FC = () => {
 
 	const results = useQueries({
 		queries: [
-			{ queryKey: ['user', userId,'genres'], queryFn: async () => await findUser(userId), staleTime: Infinity },
-			{ queryKey: ['user', userId,'playlists', 'created'], queryFn: async () => await getUserPlaylists(userId), staleTime: Infinity },
+			{ queryKey: ['user-profile', userId,'genres'], queryFn: async () => await findUser(userId), refetchOnWindowFocus: true, refetchOnMount: true },
+			{ queryKey: ['playlists-profile', userId,'playlists', 'created'], queryFn: async () => await getUserPlaylists(userId), refetchOnWindowFocus: true, refetchOnMount: true },
 		],
 	})
 
@@ -76,6 +76,12 @@ const UserProfile: React.FC = () => {
 					</div>
 					{ userId === user.id && 
 						<div className={styles.buttons}>
+							<DefaultButton 
+								className={styles.editButton} 
+								text="Minhas Playlists" 
+								icon={search} 
+								onClick={() => navigate('/users/playlists')} 
+							/>
 							<DefaultButton className={styles.analyticsButton} text="Ver Analytics" icon={search} onClick={() => navigate('/analytics')} />
 							<DefaultButton 
 								className={styles.editButton}  

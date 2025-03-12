@@ -35,9 +35,9 @@ function App() {
             <Route path='playlist/create' element={<CreatePlaylist />} />
             <Route path='playlist/edit/:id' element={<EditPlaylist />} />
             <Route path='analytics' element={<Analytics />} />
+            <Route path='playlist/:id' element={<PlaylistDetails />} />
+            <Route path='profile/:id' element={<UserProfile />} />
           </Route>
-          <Route path='playlist/:id' element={<PlaylistDetails />} />
-          <Route path='profile/:id' element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

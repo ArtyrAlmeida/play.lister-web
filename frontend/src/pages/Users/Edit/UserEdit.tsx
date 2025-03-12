@@ -28,7 +28,7 @@ const UserEdit: React.FC = () => {
 
 	const results = useQueries({
 		queries: [
-			{ queryKey: ['user', userId, 'genres'], queryFn: async () => await findUser(userId), staleTime: Infinity },
+			{ queryKey: [`genres-edit-${userId}`, userId, 'genres'], queryFn: async () => await findUser(userId), refetchOnMount: true },
 		],
 	})
 	useEffect(() => {
@@ -47,8 +47,9 @@ const UserEdit: React.FC = () => {
 				await updateUser(userId, data);
 			},
 			onSuccess: async () => {
-				await queryClient.invalidateQueries({queryKey : ['user', userId, 'genres']});
+				await queryClient.invalidateQueries({queryKey : ['user-profile', userId, 'genres']});
 				navigate('/profile');
+				navigate(0);
 			}
 		});
 

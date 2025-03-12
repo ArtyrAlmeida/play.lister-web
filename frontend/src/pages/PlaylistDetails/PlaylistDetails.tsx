@@ -14,8 +14,10 @@ const PlaylistDetails: React.FC = () => {
     const playlistId = params.id as string;
 
     const { data, isLoading, error } = useQuery({
-        refetchOnWindowFocus: false,
-        queryKey: [`playlist-${playlistId}`, playlistId],
+        refetchOnWindowFocus: true,
+        refetchOnMount: true,
+        
+        queryKey: [`playlist-${playlistId}`, playlistId, "playlist"],
         queryFn: async () => {
             return await getPlaylist(playlistId)
         }

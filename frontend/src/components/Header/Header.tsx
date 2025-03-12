@@ -14,12 +14,26 @@ import { AuthResponse } from '../../interfaces/auth.types';
 
 import styles from "./Header.module.scss";
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { findUser } from '../../api/user';
+import Loading from '../Loading/Loading';
+import NoContent from '../NoContent/NoContent';
+import { Close } from '@mui/icons-material';
 
 const Header = () => {
   const [open, setOpen] = React.useState(false);
-  const { image, name } = useAuthUser<AuthResponse>()!
+  const { id } = useAuthUser<AuthResponse>()!
   const navigate = useNavigate();
   const signOut = useSignOut()
+
+  const { data, isLoading, error } = useQuery({
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+    queryKey: [`user-${id}`, id],
+    queryFn: async () => {
+        return await findUser(id)
+    }
+});
 
   const handleLogout = () => {
     signOut();
@@ -78,12 +92,15 @@ const Header = () => {
     </Box>
   );
 
+  if (isLoading) return <div><Loading message="Carregando Header"/></div>
+  if (error || (!isLoading && !data)) return <NoContent icon={<Close />} message="Erro ao obter header"  />
+
   return (
     <>
       <div className={styles.header}>
         <div className={styles.user} onClick={toggleDrawer(true)}>
-          <p>{name}</p>
-          <img src={image} className={""} />
+          <p>{data?.name}</p>
+          <img src={data?.image} className={""} />
         </div>
       </div>
       <Drawer open={open} onClose={toggleDrawer(false)}>

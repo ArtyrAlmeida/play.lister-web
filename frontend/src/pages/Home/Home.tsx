@@ -13,9 +13,9 @@ function UsersPlaylist() {
 
     const results = useQueries({
         queries: [
-          { queryKey: ['user', userId,'playlists', 'created'], queryFn: async () => (await getPlaylistsByMonth()).reverse(), refetchOnWindowFocus: true },
-          { queryKey: ['user', userId,'playlists', 'liked'], queryFn: async () => await getLikedPlaylists(userId), refetchOnWindowFocus: true },
-          { queryKey: ['user', userId,'playlists', 'user'], queryFn: async () => await getUserPlaylists(userId), refetchOnWindowFocus: true },
+          { queryKey: ['created-home', userId,'playlists', 'created'], queryFn: async () => (await getPlaylistsByMonth()).reverse(), refetchOnWindowFocus: true },
+          { queryKey: ['liked-home', userId,'playlists', 'liked'], queryFn: async () => await getLikedPlaylists(userId), refetchOnWindowFocus: true },
+          { queryKey: ['user-home', userId,'playlists', 'user'], queryFn: async () => await getUserPlaylists(userId), refetchOnWindowFocus: true },
         ],
     })
 

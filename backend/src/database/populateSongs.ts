@@ -7,6 +7,8 @@ import User from "../models/User";
 import Plalist from "../models/Playlist";
 
 const populateSongs = async () => {
+    const allUsers = await User.find({});
+    if (allUsers.length > 0) return console.log("Database populated");
     await Song.deleteMany({});
     const addedSongs = await Song.insertMany(songs);
     const songsIds = addedSongs.map(song => song._id);
