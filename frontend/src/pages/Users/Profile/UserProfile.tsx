@@ -18,7 +18,7 @@ const UserProfile: React.FC = () => {
 	const navigate = useNavigate();
 
 	const params = useParams();
-	const user : AuthResponse = useAuthUser<AuthResponse>() || {id: "", email: "", name: "", image: "", token: ""};
+	const user : AuthResponse = useAuthUser<AuthResponse>()!;
 	const userId = params.id as string || user.id;
 
 	const [username, setUsername] = useState<string>("");
@@ -35,23 +35,18 @@ const UserProfile: React.FC = () => {
 
 	const [userInfoQuery, createdPlaylistsQuery] = results;
 	useEffect(() => {
-		// Fetch genres from user
 		if (userInfoQuery.isSuccess) {
-			console.log(results);
-			console.log(user)
 			setUsername(userInfoQuery.data.name ? userInfoQuery.data.name : "Username");
 			setUserImage(userInfoQuery.data.image ? userInfoQuery.data.image : "");
 			setGenres(userInfoQuery.data.favoriteGenres ? userInfoQuery.data.favoriteGenres : []);
 		}
 
 		if(createdPlaylistsQuery.isSuccess) {
-			console.log(createdPlaylistsQuery.data);
 			const playlists : Playlist[] =  Array.isArray(createdPlaylistsQuery.data) ? createdPlaylistsQuery.data : [];
-			console.log(playlists);
 			setPosts(playlists.map(playlist => ({
 				title: playlist.name, 
-				body: playlist.authorName, 
-				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt) : playlist.createdAt, 
+				body: playlist.songs.join(", "), 
+				date: (typeof playlist.createdAt === 'string') ? new Date(playlist.createdAt.split('/').reverse().join('-')) : playlist.createdAt, 
 				thumbnail: playlist.image
 			})));
 		}
