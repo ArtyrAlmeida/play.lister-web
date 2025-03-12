@@ -1,0 +1,35 @@
+.button {
+    border: 0;
+    border-radius: 5px;
+    padding: .8em .8em;
+    display: flex;
+    gap: .8em;
+    background-color: #32A851;
+    cursor: pointer;
+    text-decoration: none;
+    img {
+        width: 2em;
+    }
+    p {
+        font-family: "Anton", sans-serif;
+        font-size: 1rem;
+        color: white;
+    }
+}
+
+.liked {
+    background-color: #227037;
+}
+
+@media screen and (max-width: 600px) {
+    .button {
+        padding: .4em;
+        gap: .2em;
+        p {
+            font-size: .5rem;
+        }
+        img {
+            width: 1.5em;
+        }
+    }
+}

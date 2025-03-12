@@ -95,7 +95,7 @@ const PlaylistForm: React.FC<CreatePlaylistProps> = (props) => {
         {isModalActive && <SongModal alreadyAddedSongs={songs} onAddSong={handleSongAdd} onCloseModal={() => setIsModalActive(false)} />}
         <div className={styles["wrapper"]}>
 
-            <Link className={styles['navigate-control']} to={props.mode == "edit" ? `playlist/${props.initialValues._id}` : "/"}><ArrowCircleLeftOutlined />Voltar</Link>
+            <Link className={styles['navigate-control']} to={props.mode == "edit" ? `/playlist/${props.initialValues._id}` : "/"}><ArrowCircleLeftOutlined />Voltar</Link>
 
             <div className={styles.form}>
                 <div className={styles["form-group"]}>
