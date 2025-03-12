@@ -10,6 +10,7 @@ import UsersPlaylist from './pages/Users/Playlist/UsersPlaylist'
 import RouteProtector from './utils/RouteProtector'
 import PlaylistDetails from './pages/PlaylistDetails/PlaylistDetails'
 import PlaylistsByType from './pages/Users/Playlist/PlaylistByType/PlaylistByType'
+import UserProfile from './pages/Users/Profile/UserProfile'
 import CreatePlaylist from './pages/CreatePlaylist/CreatePlaylist'
 import EditPlaylist from './pages/EditPlaylist/EditPlaylist'
 import Analytics from './pages/Analytics/Analytics'
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<RouteProtector/>}>
             <Route path='' element={<Home/>}/>
             <Route path="about" element={<About />} />
+            <Route path='profile' element={<UserProfile />} />
             <Route path="users/playlists" element={<UsersPlaylist />}/>
             <Route path="users/playlists/created" element={<PlaylistsByType />}/>
             <Route path="users/playlists/liked" element={<PlaylistsByType />}/>
@@ -32,7 +34,8 @@ function App() {
             <Route path='playlist/edit/:id' element={<EditPlaylist />} />
             <Route path='analytics' element={<Analytics />} />
           </Route>
-          
+          <Route path='playlist/:id' element={<PlaylistDetails />} />
+          <Route path='profile/:id' element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

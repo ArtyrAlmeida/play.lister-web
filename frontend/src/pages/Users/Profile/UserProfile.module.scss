@@ -1,0 +1,107 @@
+@use "../../../global/core";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5rem;
+
+    @media (max-width: 768px) {
+        padding: 0 2rem;
+    }
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+    min-height: 15rem;
+    width: 80vw;
+    font-family: core.$default-font;
+    padding: 5rem 2rem 2rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+        width: 100%;
+    }
+
+    * {
+        margin: 0;
+    }
+
+    .profileImage {
+        width: 10rem;
+        height: 10rem;
+
+        @media (max-width: 768px) {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+
+    .profileInfo {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 0;
+        align-items: flex-start;
+        gap: 2rem;
+
+        h1 {
+            color: core.$secondary-color;
+        }
+
+				@media screen and (max-width: 768px) {
+					align-items: center;
+				}
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+
+        .analyticsButton {
+            background-color: core.$secondary-color;
+        }
+
+        .editButton {
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            align-items: center;
+            width: 100%;
+        }
+    }
+}
+
+.posts {
+    font-family: core.$default-font;
+
+    h1 {
+        color: white;
+        text-align: left;
+        font-size: 2.5em;
+
+        @media (max-width: 768px) {
+            font-size: 2em;
+        }
+    }
+
+    .postsContainer {
+        display: flex;
+        gap: 2rem;
+        flex-flow: wrap;
+        justify-content: space-between;
+
+        @media (max-width: 768px) {
+            gap: 1rem;
+            justify-content: center;
+        }
+    }
+}
