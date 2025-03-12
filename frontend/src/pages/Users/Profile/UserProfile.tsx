@@ -37,7 +37,7 @@ const UserProfile: React.FC = () => {
 			console.log(user)
 			setUsername(results[0].data.name ? results[0].data.name : "Username");
 			setUserImage(results[0].data.image ? results[0].data.image : "");
-			setGenres(results[0].data.genres ? results[0].data.genres : []);
+			setGenres(results[0].data.favoriteGenres ? results[0].data.favoriteGenres : []);
 		}
 		setPosts([
 			{title: "titulo da postagem", body: "X musicas", date: new Date()},
