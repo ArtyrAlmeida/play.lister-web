@@ -30,6 +30,7 @@ playlistRouter.get('/user/:id/liked', playlistController.find);
 playlistRouter.post('/', playlistController.create);
 playlistRouter.put('/:id', playlistController.updateOne)
 playlistRouter.delete('/:id', playlistController.deleteOne);
+playlistRouter.get("/month/:month", playlistController.findByMonth)
 
 const likeRouter = Router();
 const likeController = new LikeController();
