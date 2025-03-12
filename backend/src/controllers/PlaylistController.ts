@@ -74,6 +74,18 @@ export default class PlaylistController {
         }
     };
 
+    findByMonth = async (req: Request, res: Response) => {
+        const { month } = req.params;
+
+        try {
+            const response = await this.service.findByMonth(month);
+            res.status(200).json(response);
+        } catch (error) {
+            const requestError = error as RequestError;
+            res.status(requestError.code || 400).json({ error: requestError.message });
+        }
+    };
+
     updateOne = async (req: Request, res: Response) => {
         const { id } = req.params;
         const payload = req.body;

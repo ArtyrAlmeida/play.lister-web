@@ -35,14 +35,14 @@ function PlaylistList({ playlists, listTittle, playlistRouting }: PlaylistListPr
         <div className={styles['playlist-list']}>
             <div className={styles['playlist-item-header']}>
                 <h2 className={styles['playlist-tittle']}>{listTittle}</h2>
-                <NavLink to={playlistRouting} className={styles['playlist-item-action']} >Ver todas</NavLink>
+                {playlistRouting != "" && <NavLink to={playlistRouting} className={styles['playlist-item-action']} >Ver todas</NavLink>}
             </div>
             {(playlists.length > 0) ? 
             <div className={styles['grid-layout-wrapper']}>
                 <Grid2 container spacing={1} columns={{ xs: (itemSize * 2), sm: (itemSize * 3), md: (itemSize * 4), lg: (itemSize * 5) }}>
                     {playlistItems.map((playlist) => (
-                        <Grid2 display="flex" justifyContent="center" alignItems="center" size={itemSize}>
-                            <PlaylistItem key={playlist.name} createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
+                        <Grid2 key={playlist.name} display="flex" justifyContent="center" alignItems="center" size={itemSize}>
+                            <PlaylistItem createdAt={playlist.createdAt || ''} image={playlist.image} name={playlist.name} />
                         </Grid2>
                     ))}
                 </Grid2>

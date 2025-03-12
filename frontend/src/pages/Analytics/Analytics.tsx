@@ -6,6 +6,9 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { AuthResponse } from "../../interfaces/auth.types";
 
 import styles from "./Analytics.module.scss";
+import Loading from "../../components/Loading/Loading";
+import NoContent from "../../components/NoContent/NoContent";
+import { Close } from "@mui/icons-material";
 
 
 
@@ -20,8 +23,8 @@ const Analytics: React.FC = () => {
         }
     });
 
-    if (isLoading) return <h1>Loading</h1>
-    if (error || (!isLoading && !data)) return <h1>Error</h1>
+    if (isLoading) return <div><Loading message="Carregando Analytics"/></div>
+    if (error || (!isLoading && !data)) return <NoContent icon={<Close />} message="Erro ao obter métricas"  />
 
     return <div className={styles.page}>
         <h1>Analytics</h1>

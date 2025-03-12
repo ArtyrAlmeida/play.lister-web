@@ -7,6 +7,8 @@ import Close from "../../assets/images/Close.svg";
 
 import styles from "./SongModal.module.scss";
 import TextField from "@mui/material/TextField";
+import Loading from "../Loading/Loading";
+import NoContent from "../NoContent/NoContent";
 
 interface SongModalProps {
     onAddSong: (id: string) => void;
@@ -46,17 +48,8 @@ const SongModal: React.FC<SongModalProps> = ({ onAddSong, alreadyAddedSongs, onC
         };
     }, [searchInput])
 
-    if (isLoading) {
-        return <div>
-            <h3>Loading</h3>
-        </div>
-    }
-
-    if (error) {
-        return <div>
-            <h3>Error</h3>
-        </div>
-    }
+    if (isLoading) return <div className={styles.modal}><Loading message="Carregando modal"/></div>
+    if (error || (!isLoading && !data)) return <div className={styles.modal}><NoContent icon={<Close />} message="Erro ao obter músicas" /></div>
 
     return <>
         <div className={styles.modal}>
