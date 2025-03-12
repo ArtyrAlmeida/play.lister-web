@@ -2,6 +2,7 @@
 	border-radius: 50%;
 	object-fit: cover;
 	max-width: 20rem;
+	aspect-ratio: 1/1;
 
 	@media screen and (max-width: 768px) {
 		max-width: 10rem;
